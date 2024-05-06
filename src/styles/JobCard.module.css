@@ -1,0 +1,66 @@
+.container {
+    /* border: 1px solid red; */
+    max-width: 320px;
+    background-color: #fff;
+    color: black;
+    border-radius: 8px;
+    box-shadow: 0px 0px 11px 5px;
+    padding: 8px 10px 4px; 
+    font-size: 14px;
+}
+
+.compnayinfoContainer{
+    display: flex;
+    gap: 4px;
+}
+
+.company-info{
+    display: flex;
+    flex-direction: column;
+}
+
+.aboutjobContainer{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    /* border: none; */
+}
+
+.jobdescription{
+    height: 24vh;
+    overflow: hidden;
+    mask-image: linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255), rgba(255, 255, 255, 0));
+}
+.viewjob{
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    cursor: pointer;
+    color: rgba(30, 30, 217, 0.791);
+}
+
+.ctabuttons {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.ctabuttons button {
+    padding: 8px 0;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.easyapplybutton {
+    background-color: rgb(16, 87, 163);
+}
+.askforrefferal{
+    background-color: rgb(37, 132, 73);
+}

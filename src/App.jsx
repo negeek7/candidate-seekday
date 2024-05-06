@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import './App.css'
 import { jobApiCaller } from './apiCaller/jobApiCaller'
+import JobCard from './components/JobCard'
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
   return (
     <>
       <h1>Candidate Application Portal</h1>
+      <JobCard />
     </>
   )
 }
