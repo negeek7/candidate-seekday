@@ -1,0 +1,22 @@
+Working Structure
+
+Tech Stack:
+// ReactJs
+// Redux
+// CSS (Vanilla CSS is preferred)
+// Material UI
+// Please note that creating your logic for any other logic-related change is a better implementation than using 3rd party libraries
+ 
+
+1. Job Cards (Fetch data from the API) 
+    1.1 Job Card Component
+    1.2 View Job / Show More functionality
+        1.2.1 Modal for View Job
+        1.2.2 Faded Text from below
+    1.3 CTA components
+
+
+
+2. Filters
+
+
