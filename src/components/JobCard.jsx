@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../styles/JobCard.module.css'
 
-function JobCard() {
+function JobCard({handleViewJob}) {
   return (
     <div className={styles.container}>
         <div className={styles.postdateContainer}>
@@ -23,7 +23,7 @@ function JobCard() {
               <span>About Company:</span>
               <span>About us</span>
               <p className={styles.jobdescription}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada, lectus nec pulvinar sollicitudin, lectus metus efficitur leo, at tristique mauris enim vel metus. Cras dictum lorem mi, ac elementum urna tincidunt sit amet. Sed nec felis vehicula, eleifend orci sed, aliquam neque. Vestibulum congue hendrerit leo vitae malesuada. Cras placerat tempor nibh id ultrices. Etiam sit amet justo eu diam ultrices rhoncus egestas ac dui. Curabitur quis magna sit amet justo imperdiet varius. Maecenas nec semper sapien, ut lacinia enim. Donec nec massa vitae lorem pretium dignissim vitae eget erat ADADAD AD ASD ASD ASD AD ASD ASD ASD A IABDIADAUDIUAG DOA DOUA DOIA HDOIA HDOUAG OUAD OAHDOA DOAH DO at tristique mauris enim vel metus. Cras dictum lorem mi, ac elementum urna tincidunt sit amet. Sed nec felis vehicula, eleifend orci sed, aliquam neque. Vestibulum congue hendrerit leo vitae malesuada. Cras placerat tempor nibh id ultrices. Etiam sit amet justo eu diam ultrices rhoncus egestas ac dui. Curabitur quis m.</p>
-              <div className={styles.viewjob}>View Job</div>
+              <button className={styles.viewjobButton} onClick={handleViewJob}>View Job</button>
           </div>
 
 
