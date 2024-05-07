@@ -14,8 +14,6 @@ function JobDescriptionModal({ onClose }) {
     }
   }, [])
 
-  console.log(job, "jobjob")
-
   return (
     <div className={styles.container}>
       <div className={styles.subContainer}>

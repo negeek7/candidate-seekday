@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './App.css'
 import styles from './styles/App.module.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,11 +11,15 @@ function App() {
   const dispatch = useDispatch()
   const [pageNum, setPageNum] = useState(0)
 
+  // reference to hold the debounce timeoutId
+  const debounceTimeout = useRef(null);
+
 
   const jobData = useSelector(state => state.app.jobData)
   const jobDescriptionModalState = useSelector(state => state.app.jobDescriptionModalState)
 
   useEffect(() => {
+    console.log("useEFfect RAN")
     dispatch(fetchJobData({
       limit: 10,
       offset: pageNum
@@ -24,35 +28,31 @@ function App() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
 
-
   }, [pageNum])
 
   const handleScroll = () => {
-    const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
-    if (scrollTop + clientHeight >= scrollHeight) {
-      console.log("Reached bottom")
+    if (debounceTimeout.current) {
+
+      // clear timeout to prevent multiple calls on fast scrolling
+      clearTimeout(debounceTimeout.current);
     }
+
+    // settimeout ensurees that pageNum state changes or api gets called after a specific delay after last scroll, this will prevent mulitple scroll event
+    debounceTimeout.current = setTimeout(() => {
+      const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+      if (scrollTop + clientHeight >= scrollHeight - 50) {
+        setPageNum(prevPageNum => prevPageNum + 1);
+      }
+      debounceTimeout.current = null;
+    }, 600);
   };
 
   const handleViewJob = (val, job) => {
-    console.log(job, "ASDADSASD")
     dispatch(handleJobDescriptionModal(val, job))
   }
 
-
-  function getDocHeight() {
-    var D = document;
-    return Math.max(
-        D.body.scrollHeight, D.documentElement.scrollHeight,
-        D.body.offsetHeight, D.documentElement.offsetHeight,
-        D.body.clientHeight, D.documentElement.clientHeight
-    );
-}
-
-console.log(jobData, "jobData")
-
   return (
-    <>
+    <div>
       <h1>Candidate Application Portal</h1>
       <div className={styles.jobCardContainer}>
         {
@@ -68,7 +68,7 @@ console.log(jobData, "jobData")
       {
         jobDescriptionModalState && <JobDescriptionModal onClose={() => handleViewJob(false)}/>
       }
-    </>
+    </div>
   )
 }
 

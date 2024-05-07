@@ -6,6 +6,7 @@ export const FETCH_JOB_DATA_ERROR = "FETCH_JOB_DATA_ERROR"
 
 
 export function fetchJobData(bodyData = {}){
+    console.log("FETCH JOB DATA")
     return (dispatch) => {
         jobApiCaller('https://api.weekday.technology/adhoc/getSampleJdJSON', bodyData)
         .then(data => {
@@ -25,7 +26,6 @@ export function fetchJobData(bodyData = {}){
 
 
 export function handleJobDescriptionModal(val, job){
-    console.log(val, job)
     return {
         type: SHOW_JOB_DESCRIPTION,
         payload: {
