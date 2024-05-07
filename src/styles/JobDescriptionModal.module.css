@@ -6,6 +6,7 @@
     align-items: center;
     z-index: 50;
     background-color: rgba(0, 0, 0, 0.716);
+    overflow: scroll;
 }
 .subContainer{
     position: relative;
@@ -15,7 +16,7 @@
     height: fit-content;
     color: black;
     border-radius: 8px;
-    overflow: scroll;
+    overflow: hidden;
 }
 
 .topRow {
@@ -59,5 +60,6 @@
         padding-top: 28px;
         padding-bottom: 20px;
         border: 1px solid red;
+        border-radius: 0;
     }
 }
