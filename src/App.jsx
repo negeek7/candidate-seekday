@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import JobCard from './components/JobCard'
 import JobDescriptionModal from './components/Modals/JobDescriptionModal'
 import { fetchJobData, handleJobDescriptionModal } from './redux/actions/AppActions';
+import Filters from './components/Filters';
 
 function App() {
 
@@ -33,7 +34,6 @@ function App() {
     if (debounceTimeout.current) {
 
       // clear timeout to prevent multiple calls on fast scrolling
-      console.log("clear timeout")
       clearTimeout(debounceTimeout.current);
     }
     
@@ -55,6 +55,9 @@ function App() {
   return (
     <div>
       <h1>Candidate Application Portal</h1>
+      <div style={{border:"1px solid red"}}>
+        <Filters />
+      </div>
       <div className={styles.jobCardContainer}>
         {
           jobData?.map((job, index) => (
