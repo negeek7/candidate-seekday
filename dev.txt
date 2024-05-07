@@ -1,4 +1,4 @@
-~~~ Working Structure ~~~
+    ~~~ Working Structure ~~~
 
 Tech Stack:
 // ReactJs
@@ -7,16 +7,30 @@ Tech Stack:
 // Material UI
 // Please note that creating your logic for any other logic-related change is a better implementation than using 3rd party libraries
  
+// Mark Done -> ~~ DONE
 
 1. Job Cards (Fetch data from the API) 
-    1.1 Job Card Component
-    1.2 View Job / Show More functionality
-        1.2.1 Modal for View Job
-        1.2.2 Faded Text from below
-    1.3 CTA components
+    1.1 Job Card Component ~~ DONE
+    1.2 View Job / Show More functionality ~~ DONE
+        1.2.1 Modal for View Job ~~ DONE
+        1.2.2 Faded Text from below ~~ DONE
+    1.3 CTA components ~~ DONE
 
 
 
 2. Filters
 
+
+
+3. Infinite Scrolling
+    3.1 fetch initial data from API and store it to Redux
+    3.2 Show it to UI
+    3.3 Use observer to when screen hits the bottom -> call second API
+    3.4 Append the data to the Redux state and show it to UI
+    3.5 Repeat from -- 3.3
+
+    Question:
+    // Is Redux ideal to hold and store data, whats the alternative?
+    // how much data can it hold
+    // will it slow down the website as data gets bigger (scalability)
 
