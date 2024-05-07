@@ -22,8 +22,9 @@ function App() {
 
   console.log(jobData, "JOB DATAA")
 
-  const handleViewJob = () => {
-    dispatch(handleJobDescriptionModal(!jobDescriptionModalState))
+  const handleViewJob = (val, job) => {
+    console.log(job, "ASDADSASD")
+    dispatch(handleJobDescriptionModal(val, job))
   }
 
   console.log(jobDescriptionModalState, "jobDescriptionModalState")
@@ -33,13 +34,17 @@ function App() {
       <h1>Candidate Application Portal</h1>
       <div className={styles.jobCardContainer}>
         {
-          jobData?.map(job => (
-            <JobCard handleViewJob={handleViewJob}/>
+          jobData?.map((job, index) => (
+            <JobCard 
+              key={index}
+              handleViewJob={handleViewJob}
+              job={job}
+            />
           ))
         }
       </div>
       {
-        jobDescriptionModalState && <JobDescriptionModal onClose={handleViewJob}/>
+        jobDescriptionModalState && <JobDescriptionModal onClose={() => handleViewJob(false)}/>
       }
     </>
   )

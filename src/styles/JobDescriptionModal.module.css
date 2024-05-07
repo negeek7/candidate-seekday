@@ -9,11 +9,10 @@
 }
 .subContainer{
     position: relative;
-    background-color: azure;
-    padding: 8px;
-    width: 400px;
-    height: 400px;
-    border: 1px solid red;
+    background-color: rgb(255, 255, 255);
+    padding: 10px 12px;
+    width: 50vw;
+    height: fit-content;
     color: black;
     border-radius: 8px;
     overflow: scroll;
@@ -28,6 +27,31 @@
     text-align: center;
     margin: 0;
 }
+.companyNameImage{
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+.companyName {
+    font-size: 16px;
+    font-weight: 600;
+}
+.companyLogo{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+.location {
+    margin: 0;
+    text-transform: capitalize;
+}
+.jobRoleTag {
+    background-color: rgb(238, 246, 130);
+    padding: 4px 10px;
+    color: rgba(0, 0, 0, 0.808);
+    border-radius: 6px;
+}
+
 /* @media (max-width: 768px) {
     width: 400px;
     height: 400px;

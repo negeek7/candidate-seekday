@@ -2,6 +2,7 @@ import { SHOW_JOB_DESCRIPTION } from "../actions/AppActions"
 
 const initialState = {
     jobDescriptionModalState: false,
+    jobDescriptionToShow: {}
 }
 
 export default function AppReducer(state = initialState, action) {
@@ -10,7 +11,8 @@ export default function AppReducer(state = initialState, action) {
         case SHOW_JOB_DESCRIPTION:
             return {
                 ...state,
-                jobDescriptionModalState: action.payload
+                jobDescriptionModalState: action.payload.value,
+                jobDescriptionToShow: action.payload.jobToShow
             }
 
         default:
