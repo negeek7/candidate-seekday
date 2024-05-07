@@ -21,7 +21,7 @@ function JobDescriptionModal({ onClose }) {
       <div className={styles.subContainer}>
         <div className={styles.topRow}>
           <h3 className={styles.heading}>Job Description</h3>
-          <X size={24} onClick={onClose} />
+          <X size={24} onClick={onClose} style={{cursor: "pointer"}}/>
         </div>
 
         <div className={styles.content}>
