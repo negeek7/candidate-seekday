@@ -1,0 +1,20 @@
+.jobCardContainer{
+    border: 1px solid red;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 24px;
+    padding: 20px;
+    justify-items: center;
+}
+
+@media (max-width: 760px) {
+    .jobCardContainer {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1260px) {
+    .jobCardContainer {
+        grid-template-columns: auto auto;
+    }
+}

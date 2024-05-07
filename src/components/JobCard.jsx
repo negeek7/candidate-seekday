@@ -17,7 +17,7 @@ function JobCard() {
             </div>
         </div>
 
-        <span>Estimated salary: 20 -25 LPA</span>
+        <span>Estimated salary: 20 - 25 LPA</span>
 
           <div className={styles.aboutjobContainer}>
               <span>About Company:</span>
@@ -26,9 +26,13 @@ function JobCard() {
               <div className={styles.viewjob}>View Job</div>
           </div>
 
+
+          <p className={styles.minexptext}>Minimum Experience</p>
+          <span>2 years</span>
+
           <div className={styles.ctabuttons}>
                 <button className={styles.easyapplybutton}>Easy Apply</button>
-                <button className={styles.askforrefferal}>Ask for Refferal</button>
+                <button className={styles.askforrefferal}>Ask for Referral</button>
           </div>
 
 
