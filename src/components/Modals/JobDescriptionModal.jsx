@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styles from '../../styles/JobDescriptionModal.module.css'
-import { Cross } from '@phosphor-icons/react';
+import { X } from '@phosphor-icons/react';
 
 function JobDescriptionModal() {
 
@@ -15,7 +15,7 @@ function JobDescriptionModal() {
         <div className={styles.subContainer}>
           <div className={styles.topRow}>
             <h3 className={styles.heading}>Job Description</h3>
-            <Cross size={24} />
+            <X size={24} />
           </div>
         </div>
     </div>
