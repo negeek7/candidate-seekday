@@ -12,36 +12,40 @@
     justify-content: space-between;
 }
 
-.compnayinfoContainer{
+.compnayinfoContainer {
     display: flex;
     gap: 10px;
 }
 
-.companyLogo{
+.companyLogo {
     height: 32px;
     width: 32px;
     border-radius: 50%;
 }
-.jobRole, .location{
+
+.jobRole,
+.location {
     text-transform: capitalize;
 }
-.company-info{
+
+.company-info {
     display: flex;
     flex-direction: column;
 }
 
-.aboutjobContainer{
+.aboutjobContainer {
     position: relative;
     display: flex;
     flex-direction: column;
 }
 
-.jobdescription{
+.jobdescription {
     height: 16vh;
     overflow: hidden;
     mask-image: linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255), rgba(255, 255, 255, 0));
 }
-.viewjobButton{
+
+.viewjobButton {
     position: absolute;
     bottom: 4px;
     left: 0;
@@ -55,7 +59,7 @@
     padding: 4px;
 }
 
-.minexptext{
+.minexptext {
     margin: 0;
 }
 
@@ -71,15 +75,41 @@
     outline: none;
     border: none;
     border-radius: 10px;
-    font-size: 16px;
-    font-weight: 400;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.easyapplybutton,
+.askforrefferal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
 }
 
 .easyapplybutton {
-    background-color: rgb(16, 87, 163);
+    background-color: #55efc4;
+    color: #000000f7
 }
-.askforrefferal{
-    background-color: rgb(37, 132, 73);
+
+.sparkle {
+    color: #fef600;
+}
+
+.sparkle,
+.handshake {
+    transition: scale ease-in 200ms;
+}
+
+.askforrefferal {
+    background-color: #0e577f;
+    color: #d1d1d1f7
+}
+
+.easyapplybutton:hover .sparkle,
+.askforrefferal:hover .handshake {
+    scale: 1.2;
 }
 
 /* small screens */

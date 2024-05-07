@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../styles/JobCard.module.css'
+import { Handshake, Sparkle } from '@phosphor-icons/react';
 
 function JobCard({ handleViewJob, job }) {
   return (
@@ -35,8 +36,14 @@ function JobCard({ handleViewJob, job }) {
 
 
       <div className={styles.ctabuttons}>
-        <button className={styles.easyapplybutton}>Easy Apply</button>
-        <button className={styles.askforrefferal}>Ask for Referral</button>
+        <button className={styles.easyapplybutton}>
+          <Sparkle size={18} className={styles.sparkle} />
+          <span>Easy Apply</span>
+        </button>
+        <button className={styles.askforrefferal}>
+          <Handshake size={18} className={styles.handshake} />
+          <span>Ask for Referral</span>
+        </button>
       </div>
 
 
