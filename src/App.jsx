@@ -19,7 +19,6 @@ function App() {
   const jobDescriptionModalState = useSelector(state => state.app.jobDescriptionModalState)
 
   useEffect(() => {
-    console.log("useEFfect RAN")
     dispatch(fetchJobData({
       limit: 10,
       offset: pageNum
@@ -34,15 +33,17 @@ function App() {
     if (debounceTimeout.current) {
 
       // clear timeout to prevent multiple calls on fast scrolling
+      console.log("clear timeout")
       clearTimeout(debounceTimeout.current);
     }
-
+    
     // settimeout ensurees that pageNum state changes or api gets called after a specific delay after last scroll, this will prevent mulitple scroll event
     debounceTimeout.current = setTimeout(() => {
       const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
       if (scrollTop + clientHeight >= scrollHeight - 50) {
         setPageNum(prevPageNum => prevPageNum + 1);
       }
+      console.log("changed pageNum")
       debounceTimeout.current = null;
     }, 600);
   };
