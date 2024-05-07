@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styles from '../../styles/JobDescriptionModal.module.css'
 import { X } from '@phosphor-icons/react';
 
-function JobDescriptionModal() {
+function JobDescriptionModal({ onClose }) {
 
   useEffect(() => {
     document.body.style.overflow = 'hidden'
@@ -15,7 +15,7 @@ function JobDescriptionModal() {
         <div className={styles.subContainer}>
           <div className={styles.topRow}>
             <h3 className={styles.heading}>Job Description</h3>
-            <X size={24} />
+            <X size={24} onClick={onClose}/>
           </div>
         </div>
     </div>

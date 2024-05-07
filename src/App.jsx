@@ -1,14 +1,18 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import styles from './styles/App.module.css'
+import styles from './styles/App.module.css';
+import { useDispatch, useSelector } from 'react-redux';
 import { jobApiCaller } from './apiCaller/jobApiCaller'
 import JobCard from './components/JobCard'
 import JobDescriptionModal from './components/Modals/JobDescriptionModal'
+import { handleJobDescriptionModal } from './redux/actions/AppActions';
 
 function App() {
 
+  const dispatch = useDispatch()
   const [jobData, setJobData] = useState([])
-  const [showViewJobModal, setShowViewJobModal] = useState(false)
+
+  const jobDescriptionModalState = useSelector(state => state.app.jobDescriptionModalState)
 
   useEffect(() => {
     jobApiCaller('https://api.weekday.technology/adhoc/getSampleJdJSON')
@@ -17,11 +21,12 @@ function App() {
   }, [])
 
   console.log(jobData, "JOB DATAA")
-  console.log(showViewJobModal, "JOB DATAA showViewJobModal")
 
   const handleViewJob = () => {
-    setShowViewJobModal(!showViewJobModal)
+    dispatch(handleJobDescriptionModal(!jobDescriptionModalState))
   }
+
+  console.log(jobDescriptionModalState, "jobDescriptionModalState")
 
   return (
     <>
@@ -34,7 +39,7 @@ function App() {
         }
       </div>
       {
-        showViewJobModal && <JobDescriptionModal />
+        jobDescriptionModalState && <JobDescriptionModal onClose={handleViewJob}/>
       }
     </>
   )
