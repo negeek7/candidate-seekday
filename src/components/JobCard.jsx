@@ -6,7 +6,7 @@ function JobCard({ handleViewJob, job }) {
   return (
     <div className={styles.container}>
 
-      <div className={styles.compnayinfoContainer}>
+      <div className={styles.companyinfoContainer}>
         {job.logoUrl && <img src={job.logoUrl} className={styles.companyLogo} />}
         <div className={styles['company-info']}>
           {job.companyName && <span>{job.companyName}</span>}
