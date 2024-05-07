@@ -1,39 +1,43 @@
 import React from 'react';
 import styles from '../styles/JobCard.module.css'
 
-function JobCard({handleViewJob, job}) {
+function JobCard({ handleViewJob, job }) {
   return (
     <div className={styles.container}>
-        <div className={styles.postdateContainer}>
-            <span>Posted 10 days ago</span>
-        </div> 
 
-        <div className={styles.compnayinfoContainer}>
-            <span>LOGO</span>
-            <div className={styles['company-info']}>
-                <span>Company Name</span>
-                <span>Position</span>
-                <span>Location</span>
-            </div>
+      <div className={styles.compnayinfoContainer}>
+        {job.logoUrl && <img src={job.logoUrl} className={styles.companyLogo} />}
+        <div className={styles['company-info']}>
+          {job.companyName && <span>{job.companyName}</span>}
+          {job.jobRole && <span className={styles.jobRole}>{job.jobRole}</span>}
+          {job.location && <span className={styles.location}>{job.location}</span>}
         </div>
+      </div>
 
-        <span>Estimated salary: 20 - 25 LPA</span>
+      <span>Estimated salary: {job.minJdSalary && job.minJdSalary} {(job.minJdSalary && job.maxJdSalary) && ' - '} {job.maxJdSalary && job.maxJdSalary} {job.salaryCurrencyCode ? job.salaryCurrencyCode : "USD"}</span>
 
-          <div className={styles.aboutjobContainer}>
-              <span>About Company:</span>
-              <span>About us</span>
-              <p className={styles.jobdescription}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada, lectus nec pulvinar sollicitudin, lectus metus efficitur leo, at tristique mauris enim vel metus. Cras dictum lorem mi, ac elementum urna tincidunt sit amet. Sed nec felis vehicula, eleifend orci sed, aliquam neque. Vestibulum congue hendrerit leo vitae malesuada. Cras placerat tempor nibh id ultrices. Etiam sit amet justo eu diam ultrices rhoncus egestas ac dui. Curabitur quis magna sit amet justo imperdiet varius. Maecenas nec semper sapien, ut lacinia enim. Donec nec massa vitae lorem pretium dignissim vitae eget erat ADADAD AD ASD ASD ASD AD ASD ASD ASD A IABDIADAUDIUAG DOA DOUA DOIA HDOIA HDOUAG OUAD OAHDOA DOAH DO at tristique mauris enim vel metus. Cras dictum lorem mi, ac elementum urna tincidunt sit amet. Sed nec felis vehicula, eleifend orci sed, aliquam neque. Vestibulum congue hendrerit leo vitae malesuada. Cras placerat tempor nibh id ultrices. Etiam sit amet justo eu diam ultrices rhoncus egestas ac dui. Curabitur quis m.</p>
-              <button className={styles.viewjobButton} onClick={() => handleViewJob(true, job)}>View Job</button>
-          </div>
-
-
+      {
+        job.jobDetailsFromCompany &&
+        <div className={styles.aboutjobContainer}>
+          <span>About Company:</span>
+          <span>About us</span>
+          <p className={styles.jobdescription}>{job.jobDetailsFromCompany}</p>
+          <button className={styles.viewjobButton} onClick={() => handleViewJob(true, job)}>View Job</button>
+        </div>
+      }
+      {
+        job.minExp &&
+        <>
           <p className={styles.minexptext}>Minimum Experience</p>
-          <span>2 years</span>
+          <span>{job.minExp}</span>
+        </>
+      }
 
-          <div className={styles.ctabuttons}>
-                <button className={styles.easyapplybutton}>Easy Apply</button>
-                <button className={styles.askforrefferal}>Ask for Referral</button>
-          </div>
+
+      <div className={styles.ctabuttons}>
+        <button className={styles.easyapplybutton}>Easy Apply</button>
+        <button className={styles.askforrefferal}>Ask for Referral</button>
+      </div>
 
 
     </div>
