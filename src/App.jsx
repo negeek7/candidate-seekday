@@ -55,9 +55,7 @@ function App() {
   return (
     <div>
       <h1>Candidate Application Portal</h1>
-      <div style={{border:"1px solid red"}}>
         <Filters />
-      </div>
       <div className={styles.jobCardContainer}>
         {
          (filteredJobData ||  jobData)?.map((job, index) => (
