@@ -7,6 +7,8 @@ function SingleDropdownFilter({ filter, handleSingleDropdownFilter  }) {
     const [appliedFilter, setAppliedFilter] = useState(null)
     const [showDropdown, setShowDropdown] = useState(false)
 
+    console.log(filter, "FILTER")
+
     useEffect(() => {
         handleSingleDropdownFilter(filter.name, appliedFilter)
     }, [appliedFilter])
@@ -40,11 +42,11 @@ function SingleDropdownFilter({ filter, handleSingleDropdownFilter  }) {
   return (
     <div className={styles.dropdown}>
 
-            <div className={styles.dropdownsubcontainer}>
-                <div className={styles.appliedFilters}>{appliedFilter == null ? "Minimum Base Pay" : showAppliedFilter()}
-                </div>
+            <div className={styles.dropdownsubcontainer} onClick={toggleFilters}>
+                <span className={styles.appliedFilters}>{appliedFilter == null ? filter.name : showAppliedFilter()}
+                </span>
                 
-                <CaretDown size={10}  onClick={toggleFilters} className={styles.downArrow}/>
+                <CaretDown size={10} className={styles.downArrow}/>
             </div>
 
             <div id="myDropdown" className={styles.dropdownContent} style={showDropdown ? showDropDownStyle : hideDropdownStyle}>

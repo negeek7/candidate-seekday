@@ -60,13 +60,13 @@ function Filters() {
 
     return (
         <div className={styles.filterscontainer}>
-            {
-                filterData.map(filterOption => (
-                    <div>
-                        {renderFilter(filterOption)}
-                    </div>
-                ))
-            }
+                {
+                    filterData.map(filterOption => (
+                        <div>
+                            {renderFilter(filterOption)}
+                        </div>
+                    ))
+                }
         </div>
     )
 }
