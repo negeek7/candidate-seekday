@@ -5,7 +5,7 @@ export const FETCH_JOB_DATA = "FETCH_JOB_DATA"
 export const FETCH_JOB_DATA_ERROR = "FETCH_JOB_DATA_ERROR"
 export const FILTER_ROLE_JOB_DATA = "FILTER_ROLE_JOB_DATA"
 export const FILTER_MIN_BASE_PAY_JOB_DATA = "FILTER_MIN_BASE_PAY_JOB_DATA"
-export const FILTER_JOB_DATA = "FILTER_JOB_DATA"
+export const FILTERS_APPLIED_STATE = "FILTERS_APPLIED_STATE"
 
 
 export function fetchJobData(bodyData = {}){
@@ -26,6 +26,12 @@ export function fetchJobData(bodyData = {}){
     }
 }
 
+export function filtersAppliedState(val){
+    return {
+        type: FILTERS_APPLIED_STATE,
+        payload: val
+    }
+}
 
 export function handleJobDescriptionModal(val, job){
     return {
