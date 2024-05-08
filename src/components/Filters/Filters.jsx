@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../styles/Filters.module.css'
 import MultiDropdownFilter from './MultiDropdownFilter';
 import SingleDropdownFilter from './SingleDropdownFilter';
+import InputFilter from './InputFilter';
 import {  handleMinBasePayFilterSelection, handleRoleFilterSelection } from '../../redux/actions/AppActions';
 
 function Filters() {
-
 
     const dispatch = useDispatch()
     
@@ -16,13 +16,23 @@ function Filters() {
         dispatch(handleRoleFilterSelection({filterName, filterValues}))
     }
     
-    const handleMinBasePayFilterApply = (filterName, filterValue) => {
-        dispatch(handleMinBasePayFilterSelection({filterName, filterValue}))
+    const handleSingleDropdownFilter = (filterName, filterValue) => {
+        if(filterName == "Minimum Base Pay"){
+            dispatch(handleMinBasePayFilterSelection({filterName, filterValue}))
+        } else if (filterName == "Minimum Experience"){
+            console.log("min experience filter")
+        } else  if (filterName == "Remote / On site") {
+            console.log("remote filter")
+        }
+    }
+
+    const handleTextFilter = () => {
+        console.log("handle text filter")
     }
     
     const renderFilter = (filter) => {
         switch (filter.type) {
-            case 'multi-dropdown':
+            case 'multi-dropdown-roles':
                 return (
                     <MultiDropdownFilter 
                         filter={filter} 
@@ -33,7 +43,14 @@ function Filters() {
                 return (
                     <SingleDropdownFilter 
                         filter={filter} 
-                        handleMinBasePayFilterApply={handleMinBasePayFilterApply}
+                        handleSingleDropdownFilter={handleSingleDropdownFilter}
+                    />
+                )
+            case "text":
+                return (
+                    <InputFilter 
+                        filter={filter}
+                        handleTextFilter={handleTextFilter}
                     />
                 )
             default:

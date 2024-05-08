@@ -8,15 +8,31 @@ const initialState = {
     filterData: [
         {
             name: "Roles",
-            type: "multi-dropdown",
+            type: "multi-dropdown-roles",
             options: ["frontend", "backend", "fullstack", "Ios", "react-native", "android", "tech lead"],
-            applied: false
         },
         {
             name: "Minimum Base Pay",
             type: "single-dropdown",
             options: ["10", "20", "30", "40", "50", "60"],
-            applied: false
+        },
+        {
+            name: "Minimum Experience",
+            type: "single-dropdown",
+            options: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+        },
+        {
+            name: "Remote / On site",
+            type: "single-dropdown",
+            options: ["remote", "on site", "hybrid"],
+        },
+        {
+            name: "Location",
+            type: "text",
+        },
+        {
+            name: "Company Name",
+            type: "text",
         },
     ],
     filteredjobData: []

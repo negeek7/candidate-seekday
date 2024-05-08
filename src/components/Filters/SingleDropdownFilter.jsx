@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import styles from '../../styles/SingleDropdownFilter.module.css'
 import { CaretDown } from '@phosphor-icons/react';
 
-function SingleDropdownFilter({ filter, handleMinBasePayFilterApply  }) {
+function SingleDropdownFilter({ filter, handleSingleDropdownFilter  }) {
 
     const [appliedFilter, setAppliedFilter] = useState(null)
     const [showDropdown, setShowDropdown] = useState(false)
 
     useEffect(() => {
-        handleMinBasePayFilterApply(filter.name, appliedFilter)
+        handleSingleDropdownFilter(filter.name, appliedFilter)
     }, [appliedFilter])
 
     const hideDropdownStyle = {

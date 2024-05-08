@@ -1,7 +1,8 @@
 .filterscontainer{
     display: flex;
     flex-direction: row;
-    /* overflow-x: scroll; */
+    overflow-x: scroll;
+    overflow-y: hidden;
     border: 1px solid red;
     gap: 10px;
     align-items: center;
