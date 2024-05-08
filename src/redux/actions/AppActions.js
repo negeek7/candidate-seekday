@@ -2,38 +2,50 @@ import { getSampleJdJSON } from "../../jobData.js"
 
 export const SHOW_JOB_DESCRIPTION = "SHOW_JOB_DESCRIPTION"
 export const FETCH_JOB_DATA = "FETCH_JOB_DATA"
+export const FETCH_JOB_DATA_END = "FETCH_JOB_DATA_END"
 export const FETCH_JOB_DATA_ERROR = "FETCH_JOB_DATA_ERROR"
 export const FILTER_ROLE_JOB_DATA = "FILTER_ROLE_JOB_DATA"
 export const FILTER_MIN_BASE_PAY_JOB_DATA = "FILTER_MIN_BASE_PAY_JOB_DATA"
 export const FILTERS_APPLIED_STATE = "FILTERS_APPLIED_STATE"
 
 
-export function fetchJobData(bodyData = {}){
+// export function fetchJobData(bodyData = {}){
+//     return (dispatch) => {
+
+//         // The API stopped working :((( ~~~~~
+
+//         jobApiCaller('https://api.weekday.technology/adhoc/getSampleJdJSON', bodyData)
+//         .then(data => {
+//             dispatch({
+//                 type: FETCH_JOB_DATA,
+//                 payload: data.jdList
+//             })
+//         })
+//         .catch(error => {
+//             dispatch({
+//                 type: FETCH_JOB_DATA_ERROR,
+//                 payload: error
+//             })
+//         })
+//     }
+// }
+
+export function fetchJobData(from, to){
+    let data =  [...getSampleJdJSON()]
+    let displayData = data.slice(from, to)
     return (dispatch) => {
-
-        // The API stopped working :(((
-
-    //     jobApiCaller('https://api.weekday.technology/adhoc/getSampleJdJSON', bodyData)
-    //     .then(data => {
-    //         dispatch({
-    //             type: FETCH_JOB_DATA,
-    //             payload: data.jdList
-    //         })
-    //     })
-    //     .catch(error => {
-    //         dispatch({
-    //             type: FETCH_JOB_DATA_ERROR,
-    //             payload: error
-    //         })
-    //     })
-    // }
-
-        dispatch({
-            type: FETCH_JOB_DATA,
-            payload: {getSampleJdJSON}
-        })
-
-
+        if(displayData < data.length){
+            dispatch({
+                type: FETCH_JOB_DATA_END,
+                payload: true
+            })
+        } else {
+            dispatch({
+                type: FETCH_JOB_DATA,
+                payload: displayData
+            }) 
+        }
+    }
 }
 
 

@@ -10,29 +10,38 @@ import Filters from './components/Filters/Filters';
 function App() {
 
   const dispatch = useDispatch()
-  const [pageNum, setPageNum] = useState(0)
+  const [pageNum, setPageNum] = useState(10)
 
   // reference to hold the debounce timeoutId
   const debounceTimeout = useRef(null);
 
 
   const jobData = useSelector(state => state.app.jobData)
+  const endOfData = useSelector(state => state.app.endOfData)
   const filteredJobData = useSelector(state => state.app.filteredjobData)
   const jobDescriptionModalState = useSelector(state => state.app.jobDescriptionModalState)
   const filtersApplied = useSelector(state => state.app.filtersApplied)
 
   useEffect(() => {
-    dispatch(fetchJobData({
-      limit: 10,
-      offset: pageNum
-    }))
+    // dispatch(fetchJobData({
+    //   limit: 10,
+    //   offset: pageNum
+    // }))
+
+    dispatch(fetchJobData(jobData.length, pageNum))
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-
   }, [pageNum])
 
+  useEffect(() => {
+    if(endOfData){
+      window.removeEventListener('scroll', handleScroll);
+    }
+  }, [endOfData])
+
   const handleScroll = () => {
+    if(endOfData) return;
     if (debounceTimeout.current) {
 
       // clear timeout to prevent multiple calls on fast scrolling
@@ -43,7 +52,7 @@ function App() {
     debounceTimeout.current = setTimeout(() => {
       const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
       if (scrollTop + clientHeight >= scrollHeight - 50) {
-        setPageNum(prevPageNum => prevPageNum + 1);
+        setPageNum(prevPageNum => prevPageNum + 10);
       }
       debounceTimeout.current = null;
     }, 600);
@@ -53,41 +62,57 @@ function App() {
     dispatch(handleJobDescriptionModal(val, job))
   }
 
-  console.log(filteredJobData, "FILTERED JOB DATA")
+  console.log(jobData, "JOBDATA")
+  console.log(endOfData, "END OF DATA")
 
   const renderJobData = () => {
-    if(!filteredJobData.length){
-      return jobData.map((job, index) => (
-        <JobCard
-            key={index}
-            handleViewJob={handleViewJob}
-            job={job}
-          />
-      ))
-    } else if (filteredJobData.length > 0){
-      return filteredJobData.map((job, index) => (
-        <JobCard
-            key={index}
-            handleViewJob={handleViewJob}
-            job={job}
-          />
-      ))
-    } else if (filtersApplied && filteredJobData.length == 0){
-      return (
-        <div>
-          No results found.
-        </div>
-      )
+    if (filteredJobData.length === 0 && jobData.length > 1) {
+        return (
+            <>
+                {jobData.map((job, index) => (
+                    <JobCard
+                        key={index}
+                        handleViewJob={handleViewJob}
+                        job={job}
+                    />
+                ))}
+            </>
+        );
+    } else if (filteredJobData.length > 0) {
+        return (
+            <>
+                {filteredJobData.map((job, index) => (
+                    <JobCard
+                        key={index}
+                        handleViewJob={handleViewJob}
+                        job={job}
+                    />
+                ))}
+            </>
+        );
+    } else if (filtersApplied && filteredJobData.length === 0) {
+        return (
+            <div>
+                No results found.
+            </div>
+        );
     }
-  }
+};
 
   return (
     <div>
       <h1>Candidate Application Portal</h1>
         <Filters />
       <div className={styles.jobCardContainer}>
-        {renderJobData}
+        {renderJobData()}
       </div>
+      {
+
+        endOfData &&
+        <div className={styles.endofdata}>
+          No More Data To Show.
+        </div>
+      }
       {
         jobDescriptionModalState && <JobDescriptionModal onClose={() => handleViewJob(false)}/>
       }

@@ -7,8 +7,6 @@ function SingleDropdownFilter({ filter, handleSingleDropdownFilter  }) {
     const [appliedFilter, setAppliedFilter] = useState(null)
     const [showDropdown, setShowDropdown] = useState(false)
 
-    console.log(filter, "FILTER")
-
     useEffect(() => {
         handleSingleDropdownFilter(filter.name, appliedFilter)
     }, [appliedFilter])
