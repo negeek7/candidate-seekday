@@ -12,35 +12,28 @@ function Filters() {
     
     const filterData = useSelector(state => state.app.filterData)
 
-    const handleRoleFilterApply = (filterName, filterValue) => {
-        dispatch(handleRoleFilterSelection(filterName, filterValue))
+    const handleRoleFilterApply = (filterName, filterValues) => {
+        dispatch(handleRoleFilterSelection({filterName, filterValues}))
     }
     
     const handleMinBasePayFilterApply = (filterName, filterValue) => {
-        dispatch(handleMinBasePayFilterSelection(filterName, filterValue))
+        dispatch(handleMinBasePayFilterSelection({filterName, filterValue}))
     }
-
-    let filterObj = {}
-
-    const handleFilerApply = (name, value) => {
-        filterObj[name] = value
-        dispatch(handleFilterSelection(filterObj))
-    }
+    
     const renderFilter = (filter) => {
         switch (filter.type) {
             case 'multi-dropdown':
                 return (
                     <MultiDropdownFilter 
                         filter={filter} 
-                        handleRoleFilterApply={handleRoleFilterApply} handleFilerApply={handleFilerApply}
+                        handleRoleFilterApply={handleRoleFilterApply}
                     />
                 )
             case 'single-dropdown':
                 return (
                     <SingleDropdownFilter 
                         filter={filter} 
-                        handleMinBasePayFilterApply={handleMinBasePayFilterApply} 
-                        handleFilerApply={handleFilerApply}
+                        handleMinBasePayFilterApply={handleMinBasePayFilterApply}
                     />
                 )
             default:

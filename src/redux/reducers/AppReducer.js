@@ -1,5 +1,5 @@
-import { processFilterData } from "../../util/util"
-import { FETCH_JOB_DATA, FILTER_JOB_DATA, SHOW_JOB_DESCRIPTION } from "../actions/AppActions"
+import { handleMinBasePayFilter, handleRoleFilter } from "../../util/util";
+import { FETCH_JOB_DATA, FILTER_JOB_DATA, FILTER_MIN_BASE_PAY_JOB_DATA, FILTER_ROLE_JOB_DATA, SHOW_JOB_DESCRIPTION } from "../actions/AppActions"
 
 const initialState = {
     jobDescriptionModalState: false,
@@ -25,6 +25,7 @@ const initialState = {
 
 export default function AppReducer(state = initialState, action) {
 
+    let data;
     switch(action.type){
 
         case FETCH_JOB_DATA:
@@ -39,13 +40,21 @@ export default function AppReducer(state = initialState, action) {
                 jobDescriptionToShow: action.payload.jobToShow
             }
 
-            case FILTER_JOB_DATA:
-                let filteredData = processFilterData(state.jobData, action.filterObj)
-                return {
-                    ...state,
-                    filteredjobData: filteredData
-                }
+        case FILTER_ROLE_JOB_DATA:
+            data = state.filteredjobData && state.filteredjobData.length > 0 ? state.filteredjobData : state.jobData 
+            const filterRoleData = handleRoleFilter(data, action.filterData)
+            return {
+                ...state,
+                filteredjobData: [...state.filteredjobData, ...filterRoleData]
+            }
 
+        case FILTER_MIN_BASE_PAY_JOB_DATA:
+            data = state.filteredjobData && state.filteredjobData.length > 0 ? state.filteredjobData : state.jobData 
+            let filterMinBasePayFilter = handleMinBasePayFilter(data, action.filterData)
+            return {
+                ...state,
+                filteredjobData: [...state.filteredjobData, ...filterMinBasePayFilter]
+            }
         
         default:
             return state
