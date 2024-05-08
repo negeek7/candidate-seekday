@@ -2,14 +2,29 @@
     display: flex;
     flex-direction: row;
     overflow-x: scroll;
-    gap: 10px;
+    gap: 22px;
     align-items: center;
-    padding: 4px;
+    padding: 8px;
     border: 1px solid red;
     -ms-overflow-style: none; 
     scrollbar-width: none;
+    padding-left: 90px;
 }
 
 .filterssubcontainer::-webkit-scrollbar { 
     display: none;
+}
+
+@media (max-width: 768px) {
+
+    .filterscontainer{
+        padding: 6px;
+    }
+    
+}
+
+@media (min-width: 768px) and (max-width: 1260px) {
+    .filterscontainer{
+        padding-left: 42px;
+    }
 }
