@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from '../../styles/MultiDropdownFilter.module.css';
 import { CaretDown, X } from '@phosphor-icons/react';
 
-function MultiDropdownFilter({ filter, handleApplyFilter }) {
+function MultiDropdownFilter({ filter, handleRoleFilterApply }) {
 
     const [showDropdown, setShowDropdown] = useState(false)
     const [appliedFilters, setAppliedFilters] = useState([])
@@ -16,7 +16,7 @@ function MultiDropdownFilter({ filter, handleApplyFilter }) {
     }
 
     useEffect(() => {
-        handleApplyFilter(filter.name, appliedFilters)
+        handleRoleFilterApply(filter.name, appliedFilters)
     }, [appliedFilters])
 
 
@@ -47,7 +47,7 @@ function MultiDropdownFilter({ filter, handleApplyFilter }) {
     }
 
     return (
-        <div class={styles.dropdown}>
+        <div className={styles.dropdown}>
 
             <div className={styles.dropdownsubcontainer}>
                 <div className={styles.appliedFilters}>{!appliedFilters.length ? "Roles" : showAppliedFilterValues()}

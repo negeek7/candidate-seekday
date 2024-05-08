@@ -1,4 +1,4 @@
-import { FETCH_JOB_DATA, FILTER_JOB_DATA, SHOW_JOB_DESCRIPTION } from "../actions/AppActions"
+import { FETCH_JOB_DATA, SHOW_JOB_DESCRIPTION } from "../actions/AppActions"
 
 const initialState = {
     jobDescriptionModalState: false,
@@ -39,12 +39,7 @@ export default function AppReducer(state = initialState, action) {
             }
 
 
-        case FILTER_JOB_DATA:
-           console.log(action)
-            // return {
-            //     ...state,
-            //     filteredJobData: filteredJobData
-            // }
+        
         default:
             return state
     }
