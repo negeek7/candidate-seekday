@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from '../styles/Filters.module.css'
+import { handleFilterSelection } from '../redux/actions/AppActions';
 
 function Filters() {
 
+
+    const dispatch = useDispatch()
     const [showDropdwon, setShowDropdown] = useState(false)
     const filterData = useSelector(state => state.app.filterData)
 
@@ -18,6 +21,11 @@ function Filters() {
         display: "block"
     }
 
+    const handleRoleDropdownClick = (name, option) => {
+        console.log(name, option, "name, option")
+        dispatch(handleFilterSelection(name, option))
+    }
+
     const renderFilter = (filter) => {
         switch (filter.type) {
             case 'dropdown':
@@ -27,9 +35,17 @@ function Filters() {
                             {filter.name}
                         </button>
                         <div id="myDropdown" class={styles.dropdownContent} style={showDropdwon ? showDropDownStyle : hideDropdownStyle}>
-                            <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
+                            {
+                                filter.options.map((option, index) => (
+                                    <span
+                                        key={index}
+                                        className={styles.dropdownOption}
+                                        onClick={() => handleRoleDropdownClick(filter.name, option)}
+                                    >
+                                            {option}
+                                    </span>
+                                ))
+                            }
                         </div>
                     </div>
                 )

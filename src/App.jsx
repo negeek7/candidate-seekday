@@ -17,6 +17,7 @@ function App() {
 
 
   const jobData = useSelector(state => state.app.jobData)
+  const filteredJobData = useSelector(state => state.app.filteredJobData)
   const jobDescriptionModalState = useSelector(state => state.app.jobDescriptionModalState)
 
   useEffect(() => {
@@ -60,7 +61,7 @@ function App() {
       </div>
       <div className={styles.jobCardContainer}>
         {
-          jobData?.map((job, index) => (
+         (filteredJobData ||  jobData)?.map((job, index) => (
             <JobCard 
               key={index}
               handleViewJob={handleViewJob}
