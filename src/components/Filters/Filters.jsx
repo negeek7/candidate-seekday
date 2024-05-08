@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../styles/Filters.module.css'
 import MultiDropdownFilter from './MultiDropdownFilter';
 import SingleDropdownFilter from './SingleDropdownFilter';
-import {  handleFilterSelection, handleMinBasePayFilterSelection, handleRoleFilterSelection } from '../../redux/actions/AppActions';
+import {  handleMinBasePayFilterSelection, handleRoleFilterSelection } from '../../redux/actions/AppActions';
 
 function Filters() {
 

@@ -51,11 +51,3 @@ export function handleMinBasePayFilterSelection(filterObj){
         filterData: filterObj
     }
 }
-
-export function handleFilterSelection(filterObj){
-    console.log(filterObj, "filterObj")
-    return {
-        type: FILTER_JOB_DATA,
-        filterObj
-    }
-}
