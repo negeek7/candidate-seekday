@@ -4,6 +4,15 @@ const initialState = {
     jobDescriptionModalState: false,
     jobDescriptionToShow: {},
     jobData: [],
+    filterData: [
+        {
+            name: "Roles",
+            type: "dropdown",
+            values: ["frontend", "backend", "fullstack", "Ios", "react-native", "android", "tech lead"],
+            applied: false
+        },
+    ]
+    
 }
 
 export default function AppReducer(state = initialState, action) {

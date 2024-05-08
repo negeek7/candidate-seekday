@@ -34,3 +34,10 @@ export function handleJobDescriptionModal(val, job){
         }
     }
 } 
+
+
+export function handleFilterSelection(filterName, filterValue){
+
+    console.log(filterName, filterValue)
+
+}
