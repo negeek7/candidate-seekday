@@ -19,6 +19,7 @@ function App() {
   const jobData = useSelector(state => state.app.jobData)
   const filteredJobData = useSelector(state => state.app.filteredjobData)
   const jobDescriptionModalState = useSelector(state => state.app.jobDescriptionModalState)
+  const filtersApplied = useSelector(state => state.app.filtersApplied)
 
   useEffect(() => {
     dispatch(fetchJobData({
@@ -54,18 +55,38 @@ function App() {
 
   console.log(filteredJobData, "FILTERED JOB DATA")
 
+  const renderJobData = () => {
+    if(!filteredJobData.length){
+      return jobData.map((job, index) => (
+        <JobCard
+            key={index}
+            handleViewJob={handleViewJob}
+            job={job}
+          />
+      ))
+    } else if (filteredJobData.length > 0){
+      return filteredJobData.map((job, index) => (
+        <JobCard
+            key={index}
+            handleViewJob={handleViewJob}
+            job={job}
+          />
+      ))
+    } else if (filtersApplied && filteredJobData.length == 0){
+      return (
+        <div>
+          No results found.
+        </div>
+      )
+    }
+  }
+
   return (
     <div>
       <h1>Candidate Application Portal</h1>
         <Filters />
       <div className={styles.jobCardContainer}>
-        {(filteredJobData && filteredJobData.length > 0 ? filteredJobData : jobData).map((job, index) => (
-          <JobCard
-            key={index}
-            handleViewJob={handleViewJob}
-            job={job}
-          />
-        ))}
+        {renderJobData}
       </div>
       {
         jobDescriptionModalState && <JobDescriptionModal onClose={() => handleViewJob(false)}/>

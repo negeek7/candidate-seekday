@@ -26,12 +26,6 @@ export function fetchJobData(bodyData = {}){
     }
 }
 
-export function filtersAppliedState(val){
-    return {
-        type: FILTERS_APPLIED_STATE,
-        payload: val
-    }
-}
 
 export function handleJobDescriptionModal(val, job){
     return {
@@ -41,19 +35,31 @@ export function handleJobDescriptionModal(val, job){
             jobToShow: job
         }
     }
-} 
+}
 
+export function filtersAppliedState(val){
+    return {
+        type: FILTERS_APPLIED_STATE,
+        payload: val
+    }
+}
 
 export function handleRoleFilterSelection(filterObj){
-    return {
-        type: FILTER_ROLE_JOB_DATA,
-        filterData: filterObj
+    return (dispatch) => {
+        dispatch(filtersAppliedState(true))
+        dispatch({
+            type: FILTER_ROLE_JOB_DATA,
+            filterData: filterObj
+        })
     }
 }
 
 export function handleMinBasePayFilterSelection(filterObj){
-    return {
-        type: FILTER_MIN_BASE_PAY_JOB_DATA,
-        filterData: filterObj
+    return (dispatch) => {
+        dispatch(filtersAppliedState(true))
+        dispatch({
+            type: FILTER_MIN_BASE_PAY_JOB_DATA,
+            filterData: filterObj
+        })
     }
 }
