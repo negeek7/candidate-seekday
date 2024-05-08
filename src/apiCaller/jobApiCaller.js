@@ -1,5 +1,4 @@
 export async function jobApiCaller(url, payload = {}) {
-    console.log(payload, "payload")
     const response = await fetch(url, {
         method: "POST",
         header: "application/json",

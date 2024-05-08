@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import JobCard from './components/JobCard'
 import JobDescriptionModal from './components/Modals/JobDescriptionModal'
 import { fetchJobData, handleJobDescriptionModal } from './redux/actions/AppActions';
-import Filters from './components/Filters';
+import Filters from './components/Filters/Filters';
 
 function App() {
 
@@ -44,7 +44,6 @@ function App() {
       if (scrollTop + clientHeight >= scrollHeight - 50) {
         setPageNum(prevPageNum => prevPageNum + 1);
       }
-      console.log("changed pageNum")
       debounceTimeout.current = null;
     }, 600);
   };

@@ -21,6 +21,9 @@ Tech Stack:
 2. Filters
     2.1 UI Logic
     2.2 Data Logic
+
+        // Data is getting updated on one value for Role 
+            // Now, to be implemented on multiple values
         // Accept multiple filter values on single filter (like 'Roles') and update data accordingly
         // To filter incoming data (new api call) on filter, if filter is applied
         // 

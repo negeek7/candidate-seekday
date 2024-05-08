@@ -7,7 +7,6 @@ export const FILTER_JOB_DATA = "FILTER_JOB_DATA"
 
 
 export function fetchJobData(bodyData = {}){
-    console.log("FETCH JOB DATA")
     return (dispatch) => {
         jobApiCaller('https://api.weekday.technology/adhoc/getSampleJdJSON', bodyData)
         .then(data => {
