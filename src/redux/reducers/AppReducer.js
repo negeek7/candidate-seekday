@@ -7,8 +7,14 @@ const initialState = {
     filterData: [
         {
             name: "Roles",
-            type: "dropdown",
+            type: "multi-dropdown",
             options: ["frontend", "backend", "fullstack", "Ios", "react-native", "android", "tech lead"],
+            applied: false
+        },
+        {
+            name: "Minimum Base Pay Salary",
+            type: "single-dropdown",
+            options: ["10", "20", "30", "40", "50", "60"],
             applied: false
         },
     ],
