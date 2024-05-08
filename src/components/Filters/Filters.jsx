@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../styles/Filters.module.css'
 import MultiDropdownFilter from './MultiDropdownFilter';
 import SingleDropdownFilter from './SingleDropdownFilter';
-import {  handleMinBasePayFilterSelection, handleRoleFilterSelection } from '../../redux/actions/AppActions';
+import {  handleFilterSelection, handleMinBasePayFilterSelection, handleRoleFilterSelection } from '../../redux/actions/AppActions';
 
 function Filters() {
 
@@ -19,16 +19,29 @@ function Filters() {
     const handleMinBasePayFilterApply = (filterName, filterValue) => {
         dispatch(handleMinBasePayFilterSelection(filterName, filterValue))
     }
-    
+
+    let filterObj = {}
+
+    const handleFilerApply = (name, value) => {
+        filterObj[name] = value
+        dispatch(handleFilterSelection(filterObj))
+    }
     const renderFilter = (filter) => {
         switch (filter.type) {
             case 'multi-dropdown':
                 return (
-                    <MultiDropdownFilter filter={filter} handleRoleFilterApply={handleRoleFilterApply} />
+                    <MultiDropdownFilter 
+                        filter={filter} 
+                        handleRoleFilterApply={handleRoleFilterApply} handleFilerApply={handleFilerApply}
+                    />
                 )
             case 'single-dropdown':
                 return (
-                    <SingleDropdownFilter filter={filter} handleMinBasePayFilterApply={handleMinBasePayFilterApply} />
+                    <SingleDropdownFilter 
+                        filter={filter} 
+                        handleMinBasePayFilterApply={handleMinBasePayFilterApply} 
+                        handleFilerApply={handleFilerApply}
+                    />
                 )
             default:
                 return null

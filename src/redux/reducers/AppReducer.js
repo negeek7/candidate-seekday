@@ -1,4 +1,5 @@
-import { FETCH_JOB_DATA, SHOW_JOB_DESCRIPTION } from "../actions/AppActions"
+import { processFilterData } from "../../util/util"
+import { FETCH_JOB_DATA, FILTER_JOB_DATA, SHOW_JOB_DESCRIPTION } from "../actions/AppActions"
 
 const initialState = {
     jobDescriptionModalState: false,
@@ -38,6 +39,12 @@ export default function AppReducer(state = initialState, action) {
                 jobDescriptionToShow: action.payload.jobToShow
             }
 
+            case FILTER_JOB_DATA:
+                let filteredData = processFilterData(state.jobData, action.filterObj)
+                return {
+                    ...state,
+                    filteredjobData: filteredData
+                }
 
         
         default:
