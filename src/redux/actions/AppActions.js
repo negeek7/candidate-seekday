@@ -3,7 +3,8 @@ import { jobApiCaller } from "../../apiCaller/jobApiCaller"
 export const SHOW_JOB_DESCRIPTION = "SHOW_JOB_DESCRIPTION"
 export const FETCH_JOB_DATA = "FETCH_JOB_DATA"
 export const FETCH_JOB_DATA_ERROR = "FETCH_JOB_DATA_ERROR"
-export const FILTER_JOB_DATA = "FILTER_JOB_DATA"
+export const FILTER_ROLE_JOB_DATA = "FILTER_ROLE_JOB_DATA"
+export const FILTER_MIN_BASE_PAY_JOB_DATA = "FILTER_MIN_BASE_PAY_JOB_DATA"
 
 
 export function fetchJobData(bodyData = {}){
@@ -36,14 +37,16 @@ export function handleJobDescriptionModal(val, job){
 } 
 
 
-export function handleFilterSelection(filterName, filterValue){
-
+export function handleRoleFilterSelection(filterObj){
     return {
-        type: FILTER_JOB_DATA,
-        filterData: {
-            filterName,
-            filterValue
-        }
+        type: FILTER_ROLE_JOB_DATA,
+        filterData: filterObj
     }
+}
 
+export function handleMinBasePayFilterSelection(filterObj){
+    return {
+        type: FILTER_MIN_BASE_PAY_JOB_DATA,
+        filterData: filterObj
+    }
 }

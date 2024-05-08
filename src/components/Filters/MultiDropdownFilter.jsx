@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from '../../styles/MultiDropdownFilter.module.css';
 import { CaretDown, X } from '@phosphor-icons/react';
 
-function MultiDropdownFilter({ filter }) {
+function MultiDropdownFilter({ filter, handleApplyFilter }) {
 
     const [showDropdown, setShowDropdown] = useState(false)
     const [appliedFilters, setAppliedFilters] = useState([])
@@ -16,7 +16,7 @@ function MultiDropdownFilter({ filter }) {
     }
 
     useEffect(() => {
-        console.log("applied filters changed")
+        handleApplyFilter(filter.name, appliedFilters)
     }, [appliedFilters])
 
 

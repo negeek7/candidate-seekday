@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../styles/Filters.module.css'
 import MultiDropdownFilter from './MultiDropdownFilter';
 import SingleDropdownFilter from './SingleDropdownFilter';
+import {  handleMinBasePayFilterSelection, handleRoleFilterSelection } from '../../redux/actions/AppActions';
 
 function Filters() {
 
@@ -11,15 +12,23 @@ function Filters() {
     
     const filterData = useSelector(state => state.app.filterData)
 
+    const handleRoleFilterApply = (filterName, filterValue) => {
+        dispatch(handleRoleFilterSelection(filterName, filterValue))
+    }
+    
+    const handleMinBasePayFilterApply = (filterName, filterValue) => {
+        dispatch(handleMinBasePayFilterSelection(filterName, filterValue))
+    }
+    
     const renderFilter = (filter) => {
         switch (filter.type) {
             case 'multi-dropdown':
                 return (
-                    <MultiDropdownFilter filter={filter} />
+                    <MultiDropdownFilter filter={filter} handleRoleFilterApply={handleRoleFilterApply} />
                 )
             case 'single-dropdown':
                 return (
-                    <SingleDropdownFilter filter={filter} />
+                    <SingleDropdownFilter filter={filter} handleMinBasePayFilterApply={handleMinBasePayFilterApply} />
                 )
             default:
                 return null

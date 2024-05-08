@@ -12,7 +12,7 @@ const initialState = {
             applied: false
         },
         {
-            name: "Minimum Base Pay Salary",
+            name: "Minimum Base Pay",
             type: "single-dropdown",
             options: ["10", "20", "30", "40", "50", "60"],
             applied: false
@@ -40,13 +40,11 @@ export default function AppReducer(state = initialState, action) {
 
 
         case FILTER_JOB_DATA:
-            let currentJobData = state.jobData;
-            const filteredJobData = currentJobData.filter(job => job.jobRole.toLowerCase() === action.filterData.filterValue.toLowerCase())
-            console.log(filteredJobData, "filteredJobData")
-            return {
-                ...state,
-                filteredJobData: filteredJobData
-            }
+           console.log(action)
+            // return {
+            //     ...state,
+            //     filteredJobData: filteredJobData
+            // }
         default:
             return state
     }
