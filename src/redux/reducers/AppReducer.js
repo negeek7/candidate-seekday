@@ -1,5 +1,5 @@
-import { handleMinBasePayFilter, handleRemoteOnsiteFilter, handleRoleFilter, handleRoleRemoveFilter } from "../../util/util";
-import { FETCH_JOB_DATA, FETCH_JOB_DATA_END, FILTERS_APPLIED_STATE, FILTER_MIN_BASE_PAY_JOB_DATA, FILTER_MIN_EXP_JOB_DATA, FILTER_REMOTE_ONSITE_DATA, FILTER_ROLE_JOB_DATA, REMOVE_ROLE_FILTER, SHOW_JOB_DESCRIPTION, handleRemoteOnsiteFilterSelection } from "../actions/AppActions"
+import { handleLocationFilter, handleMinBasePayFilter, handleRemoteOnsiteFilter, handleRoleFilter, handleRoleRemoveFilter } from "../../util/util";
+import { FETCH_JOB_DATA, FETCH_JOB_DATA_END, FILTERS_APPLIED_STATE, FILTER_LOCATION_DATA, FILTER_MIN_BASE_PAY_JOB_DATA, FILTER_MIN_EXP_JOB_DATA, FILTER_REMOTE_ONSITE_DATA, FILTER_ROLE_JOB_DATA, REMOVE_ROLE_FILTER, SHOW_JOB_DESCRIPTION, handleRemoteOnsiteFilterSelection } from "../actions/AppActions"
 
 const initialState = {
     jobDescriptionModalState: false,
@@ -32,10 +32,12 @@ const initialState = {
         {
             name: "Location",
             type: "text",
+            uid: "location-filter"
         },
         {
             name: "Company Name",
             type: "text",
+            uid: "companyname-filter"
         },
     ],
     filteredjobData: [],
@@ -43,6 +45,7 @@ const initialState = {
     filteredRemoteOnsiteData: [],
     filteredMinExpData: [],
     filteredMinBasePayData: [],
+    filteredLocationData: [],
     filtersApplied: false,
     endOfData: false
 }
@@ -117,6 +120,14 @@ export default function AppReducer(state = initialState, action) {
                 filteredjobData: [...state.filteredjobData, ...state.filteredMinBasePayData],
             }
 
+        case FILTER_LOCATION_DATA:
+            data = state.jobData
+            let filteredLocation = handleLocationFilter(data, action.filterData)
+            console.log(filteredLocation, "filteredLocation")
+            return {
+                ...state,
+                filteredLocationData: [...filteredLocation]
+            }
         default:
             return state
     }

@@ -25,6 +25,7 @@ function App() {
   const filteredMinBasePayData = useSelector(state => state.app.filteredMinBasePayData)
   const filteredMinExpData = useSelector(state => state.app.filteredMinExpData)
   const filteredRemoteOnsiteData = useSelector(state => state.app.filteredRemoteOnsiteData)
+  const filteredLocationData = useSelector(state => state.app.filteredLocationData)
 
 
   useEffect(() => {
@@ -45,10 +46,12 @@ function App() {
   }, [endOfData])
 
   useEffect(() => {
-    if (filteredMinBasePayData || filteredMinExpData) {
+    if(!!filteredLocationData.length){
+      setFilteredJobData([...filteredLocationData])
+    } else if (filteredMinBasePayData || filteredMinExpData) {
       setFilteredJobData([...filteredMinBasePayData, ...filteredMinExpData, ...filteredRemoteOnsiteData])
     }
-  }, [filteredMinBasePayData, filteredMinExpData, filteredRemoteOnsiteData])
+  }, [filteredMinBasePayData, filteredMinExpData, filteredRemoteOnsiteData, filteredLocationData])
 
   console.log(filteredMinBasePayData, "filteredMinBasePayData")
 

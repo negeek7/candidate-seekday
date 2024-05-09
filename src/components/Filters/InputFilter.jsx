@@ -11,7 +11,7 @@ function InputFilter({ filter, handleTextFilter }) {
   }
 
   const performSearch = () => {
-    console.log(filterValue, "perform search")
+    handleTextFilter(filter.uid, filter.name, filterValue)
   }
 
   useEffect(() => {

@@ -44,6 +44,11 @@ export function handleRemoteOnsiteFilter(data, filterObj){
     return remoteOnsiteData
 }
 
-function handleCompnayNameFilter(){
-
+export function handleLocationFilter(data, filterObj){
+    let filterValue = filterObj.filterValue 
+    let locationData = data.filter(item => {
+        return item.location.includes(filterValue)
+    })
+    
+    return locationData
 }
