@@ -5,6 +5,7 @@ export const FETCH_JOB_DATA = "FETCH_JOB_DATA"
 export const FETCH_JOB_DATA_END = "FETCH_JOB_DATA_END"
 export const FETCH_JOB_DATA_ERROR = "FETCH_JOB_DATA_ERROR"
 export const FILTER_ROLE_JOB_DATA = "FILTER_ROLE_JOB_DATA"
+export const REMOVE_ROLE_FILTER = "REMOVE_ROLE_FILTER"
 export const FILTER_MIN_BASE_PAY_JOB_DATA = "FILTER_MIN_BASE_PAY_JOB_DATA"
 export const FILTERS_APPLIED_STATE = "FILTERS_APPLIED_STATE"
 
@@ -33,7 +34,10 @@ export const FILTERS_APPLIED_STATE = "FILTERS_APPLIED_STATE"
 export function fetchJobData(from, to, filtersApplied){
     let data =  [...getSampleJdJSON()]
     let displayData = data.slice(from, to)
-    return (dispatch) => {
+    return (dispatch, getState) => {
+
+        const app = getState()
+        console.log(app, "APPP STATE")
         if(displayData < data.length){
             dispatch({
                 type: FETCH_JOB_DATA_END,
@@ -67,14 +71,17 @@ export function filtersAppliedState(val){
 }
 
 export function handleRoleFilterSelection(filterObj){
-    return (dispatch) => {
-        if(filterObj.filterValue){
-            dispatch(filtersAppliedState(true))
-        }
-        dispatch({
-            type: FILTER_ROLE_JOB_DATA,
-            filterData: filterObj
-        })
+    console.log(filterObj, "filterObj")
+    return {
+        type: FILTER_ROLE_JOB_DATA,
+        filterData: filterObj
+    }
+}
+
+export function handleRemoveRoleFilter(filterObj){
+    return {
+        type: REMOVE_ROLE_FILTER,
+        filterData: filterObj
     }
 }
 

@@ -1,6 +1,14 @@
 export function handleRoleFilter(data, filterObj){
     let values = filterObj.filterValues
-    return data.filter(item => values.includes(item.jobRole) )
+    if(!values.length) return []
+    let filteredData = data.filter(item => values.includes(item.jobRole) )
+    console.log(filteredData, "ROLE filteredData")
+    return filteredData
+}
+
+export function handleRoleRemoveFilter(data, filterValue){
+    let filteredData = data.filter(item => item.role !== filterValue )
+    return filteredData
 }
 
 export function handleMinBasePayFilter(data, filterObj){

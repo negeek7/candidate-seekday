@@ -28,7 +28,7 @@ function App() {
     //   offset: pageNum
     // }))
 
-    dispatch(fetchJobData(jobData.length, pageNum, filtersApplied))
+    dispatch(fetchJobData(jobData.length, pageNum))
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -64,13 +64,13 @@ function App() {
 
 
   const renderJobData = () => {
-    if (filtersApplied && filteredJobData.length === 0) {
+    if (filtersApplied && filteredJobData?.length === 0) {
       return (
           <div>
               No results found.
           </div>
       );
-  } else if (filteredJobData.length === 0 && jobData.length > 1) {
+  } else if (filteredJobData?.length === 0 && jobData?.length > 0) {
         return (
             <>
                 {jobData.map((job, index) => (
@@ -82,7 +82,7 @@ function App() {
                 ))}
             </>
         );
-    } else if (filteredJobData.length > 0) {
+    } else if (filteredJobData?.length > 0) {
         return (
             <>
                 {filteredJobData.map((job, index) => (
@@ -97,6 +97,7 @@ function App() {
     }
 };
 
+console.log(filteredJobData, "filteredJobData")
 console.log(filtersApplied, "filtersApplied")
 
   return (

@@ -26,11 +26,12 @@ function Filters() {
         }
     }
 
-    const handleTextFilter = () => {
-        console.log("handle text filter")
-    }
+        const handleTextFilter = () => {
+            console.log("handle text filter")
+        }
     
     const renderFilter = (filter) => {
+        console.log(filter, "FFAA")
         switch (filter.type) {
             case 'multi-dropdown-roles':
                 return (
@@ -38,20 +39,7 @@ function Filters() {
                         filter={filter} 
                         handleMultiDropdownFilter={handleMultiDropdownFilter}
                     />
-                )
-            case 'single-dropdown':
-                return (
-                    <SingleDropdownFilter 
-                        filter={filter} 
-                        handleSingleDropdownFilter={handleSingleDropdownFilter}
-                    />
-                )
-            case "text":
-                return (
-                    <InputFilter 
-                        filter={filter}
-                        handleTextFilter={handleTextFilter}
-                    />
+                    // <p>Hello</p>
                 )
             default:
                 return null
@@ -61,8 +49,8 @@ function Filters() {
     return (
         <div className={styles.filterscontainer}>
                 {
-                    filterData.map(filterOption => (
-                        <div>
+                    filterData?.map((filterOption, index) => (
+                        <div key={index}>
                             {renderFilter(filterOption)}
                         </div>
                     ))
