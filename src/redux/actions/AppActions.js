@@ -7,6 +7,7 @@ export const FETCH_JOB_DATA_ERROR = "FETCH_JOB_DATA_ERROR"
 export const FILTER_ROLE_JOB_DATA = "FILTER_ROLE_JOB_DATA"
 export const REMOVE_ROLE_FILTER = "REMOVE_ROLE_FILTER"
 export const FILTER_MIN_BASE_PAY_JOB_DATA = "FILTER_MIN_BASE_PAY_JOB_DATA"
+export const FILTER_MIN_EXP_JOB_DATA = "FILTER_MIN_EXP_JOB_DATA"
 export const FILTERS_APPLIED_STATE = "FILTERS_APPLIED_STATE"
 
 
@@ -90,6 +91,18 @@ export function handleMinBasePayFilterSelection(filterObj){
         }
         dispatch({
             type: FILTER_MIN_BASE_PAY_JOB_DATA,
+            filterData: filterObj
+        })
+    }
+}
+
+export function handleMinExpFilterSelection(filterObj){
+    return (dispatch) => {
+        if(filterObj.filterValue !== null){
+            dispatch(filtersAppliedState(true))
+        }
+        dispatch({
+            type: FILTER_MIN_EXP_JOB_DATA,
             filterData: filterObj
         })
     }

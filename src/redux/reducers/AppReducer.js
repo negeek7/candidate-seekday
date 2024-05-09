@@ -1,5 +1,5 @@
 import { handleMinBasePayFilter, handleRoleFilter, handleRoleRemoveFilter } from "../../util/util";
-import { FETCH_JOB_DATA, FETCH_JOB_DATA_END, FILTERS_APPLIED_STATE, FILTER_MIN_BASE_PAY_JOB_DATA, FILTER_ROLE_JOB_DATA, REMOVE_ROLE_FILTER, SHOW_JOB_DESCRIPTION } from "../actions/AppActions"
+import { FETCH_JOB_DATA, FETCH_JOB_DATA_END, FILTERS_APPLIED_STATE, FILTER_MIN_BASE_PAY_JOB_DATA, FILTER_MIN_EXP_JOB_DATA, FILTER_ROLE_JOB_DATA, REMOVE_ROLE_FILTER, SHOW_JOB_DESCRIPTION } from "../actions/AppActions"
 
 const initialState = {
     jobDescriptionModalState: false,
@@ -41,7 +41,7 @@ const initialState = {
     filteredjobData: [],
     filteredRoleData: [],
     filteredRemoteData: [],
-    filteredExperienceData: [],
+    filteredMinExpData: [],
     filteredMinBasePayData: [],
     filtersApplied: false,
     endOfData: false
@@ -92,11 +92,19 @@ export default function AppReducer(state = initialState, action) {
 
         case FILTER_MIN_BASE_PAY_JOB_DATA:
             data = state.jobData 
-            let filterMinBasePayFilter = handleMinBasePayFilter(data, action.filterData)
-            console.log(filterMinBasePayFilter, "filterMinBasePayFilter")
+            let filteredMinBasePay = handleMinBasePayFilter(data, action.filterData)
             return {
                 ...state,
-                filteredMinBasePayData: [...filterMinBasePayFilter],
+                filteredMinBasePayData: [...filteredMinBasePay],
+                filteredjobData: [...state.filteredjobData, ...state.filteredMinBasePayData],
+            }
+
+        case FILTER_MIN_EXP_JOB_DATA:
+            data = state.jobData 
+            let filteredMinExp = handleMinBasePayFilter(data, action.filterData)
+            return {
+                ...state,
+                filteredMinExpData: [...filteredMinExp],
                 filteredjobData: [...state.filteredjobData, ...state.filteredMinBasePayData],
             }
         

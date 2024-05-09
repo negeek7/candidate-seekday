@@ -23,6 +23,7 @@ function App() {
   const jobDescriptionModalState = useSelector(state => state.app.jobDescriptionModalState)
   const filtersApplied = useSelector(state => state.app.filtersApplied)
   const filteredMinBasePayData = useSelector(state => state.app.filteredMinBasePayData)
+  const filteredMinExpData = useSelector(state => state.app.filteredMinExpData)
 
 
   useEffect(() => {
@@ -43,10 +44,10 @@ function App() {
   }, [endOfData])
 
   useEffect(() => {
-    if(filteredMinBasePayData){
-      setFilteredJobData([...filteredMinBasePayData])
+    if(filteredMinBasePayData || filteredMinExpData){
+      setFilteredJobData([...filteredMinBasePayData, ...filteredMinExpData])
     }
-  }, [filteredMinBasePayData])
+  }, [filteredMinBasePayData, filteredMinExpData])
 
   console.log(filteredMinBasePayData, "filteredMinBasePayData")
 

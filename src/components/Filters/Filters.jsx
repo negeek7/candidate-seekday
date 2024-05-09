@@ -4,7 +4,7 @@ import styles from '../../styles/Filters.module.css'
 import MultiDropdownFilter from './MultiDropdownFilter';
 import SingleDropdownFilter from './SingleDropdownFilter';
 import InputFilter from './InputFilter';
-import {  handleMinBasePayFilterSelection, handleRoleFilterSelection } from '../../redux/actions/AppActions';
+import {  handleMinBasePayFilterSelection, handleMinExpFilterSelection, handleRoleFilterSelection } from '../../redux/actions/AppActions';
 
 function Filters() {
 
@@ -21,7 +21,7 @@ function Filters() {
         if(id == "min-basepay-filter"){
             dispatch(handleMinBasePayFilterSelection({id, filterName, filterValue}))
         } else if (filterName == "Minimum Experience"){
-            console.log("min experience filter")
+            dispatch(handleMinExpFilterSelection({id, filterName, filterValue}))
         } else  if (filterName == "Remote / On site") {
             console.log("remote filter")
         }

@@ -21,6 +21,16 @@ export function handleMinBasePayFilter(data, filterObj){
     return minBasePayData
 }
 
+export function handleMinExpFilter(data, filterObj){
+    let filterValue = filterObj.filterValue 
+    let minExpJobData = data.filter(item => {
+        if(filterValue <= item.minExp){
+            return item
+        }
+    })
+    return minExpJobData
+}
+
 function handleLocationFilter(){
 
 }
