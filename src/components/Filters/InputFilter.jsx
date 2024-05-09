@@ -16,12 +16,12 @@ function InputFilter({ filter, handleTextFilter }) {
   }
 
   useEffect(() => {
-    if(!initialRender){
+    if (!initialRender) {
       clearTimeout(timeoutId)
-        console.log(filterValue, "filterValue")
-        setTimeoutId(setTimeout(() => {
-          performSearch()
-        }, 2000))
+      console.log(filterValue, "filterValue")
+      setTimeoutId(setTimeout(() => {
+        performSearch()
+      }, 2000))
     } else {
       setInitialRender(false)
     }

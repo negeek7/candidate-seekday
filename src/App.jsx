@@ -26,6 +26,7 @@ function App() {
   const filteredMinExpData = useSelector(state => state.app.filteredMinExpData)
   const filteredRemoteOnsiteData = useSelector(state => state.app.filteredRemoteOnsiteData)
   const filteredLocationData = useSelector(state => state.app.filteredLocationData)
+  const filteredCompanyNameData = useSelector(state => state.app.filteredCompanyNameData)
 
 
   useEffect(() => {
@@ -46,14 +47,16 @@ function App() {
   }, [endOfData])
 
   useEffect(() => {
-    if(!!filteredLocationData.length){
-      setFilteredJobData([...filteredLocationData])
-    } else if (filteredMinBasePayData || filteredMinExpData) {
+    if (filteredLocationData.length || filteredCompanyNameData.length) {
+      setFilteredJobData([...filteredLocationData, ...filteredCompanyNameData]);
+    } 
+    if(filteredMinBasePayData || filteredMinExpData || filteredRemoteOnsiteData) {
       setFilteredJobData([...filteredMinBasePayData, ...filteredMinExpData, ...filteredRemoteOnsiteData])
     }
-  }, [filteredMinBasePayData, filteredMinExpData, filteredRemoteOnsiteData, filteredLocationData])
+  }, [filteredMinBasePayData, filteredMinExpData, filteredRemoteOnsiteData, filteredLocationData, filteredCompanyNameData])
 
-  console.log(filteredMinBasePayData, "filteredMinBasePayData")
+  console.log(filteredRemoteOnsiteData, "filteredRemoteOnsiteData")
+  console.log(filteredJobData, "filteredJobData")
 
   const handleScroll = () => {
     if (endOfData) return;

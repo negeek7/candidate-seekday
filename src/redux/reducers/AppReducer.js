@@ -1,5 +1,5 @@
-import { handleLocationFilter, handleMinBasePayFilter, handleRemoteOnsiteFilter, handleRoleFilter, handleRoleRemoveFilter } from "../../util/util";
-import { FETCH_JOB_DATA, FETCH_JOB_DATA_END, FILTERS_APPLIED_STATE, FILTER_LOCATION_DATA, FILTER_MIN_BASE_PAY_JOB_DATA, FILTER_MIN_EXP_JOB_DATA, FILTER_REMOTE_ONSITE_DATA, FILTER_ROLE_JOB_DATA, REMOVE_ROLE_FILTER, SHOW_JOB_DESCRIPTION, handleRemoteOnsiteFilterSelection } from "../actions/AppActions"
+import { handleCompanyNameFilter, handleLocationFilter, handleMinBasePayFilter, handleRemoteOnsiteFilter, handleRoleFilter, handleRoleRemoveFilter } from "../../util/util";
+import { FETCH_JOB_DATA, FETCH_JOB_DATA_END, FILTERS_APPLIED_STATE, FILTER_COMPANY_NAME_DATA, FILTER_LOCATION_DATA, FILTER_MIN_BASE_PAY_JOB_DATA, FILTER_MIN_EXP_JOB_DATA, FILTER_REMOTE_ONSITE_DATA, FILTER_ROLE_JOB_DATA, REMOVE_ROLE_FILTER, SHOW_JOB_DESCRIPTION, handleRemoteOnsiteFilterSelection } from "../actions/AppActions"
 
 const initialState = {
     jobDescriptionModalState: false,
@@ -46,6 +46,7 @@ const initialState = {
     filteredMinExpData: [],
     filteredMinBasePayData: [],
     filteredLocationData: [],
+    filteredCompanyNameData: [],
     filtersApplied: false,
     endOfData: false
 }
@@ -127,6 +128,14 @@ export default function AppReducer(state = initialState, action) {
             return {
                 ...state,
                 filteredLocationData: [...filteredLocation]
+            }
+            
+        case FILTER_COMPANY_NAME_DATA:
+            data = state.jobData
+            let filteredCompanyName = handleCompanyNameFilter(data, action.filterData)
+            return {
+                ...state,
+                filteredCompanyNameData: [...filteredCompanyName]
             }
         default:
             return state

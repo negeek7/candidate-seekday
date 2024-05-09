@@ -10,6 +10,7 @@ export const FILTER_MIN_BASE_PAY_JOB_DATA = "FILTER_MIN_BASE_PAY_JOB_DATA"
 export const FILTER_MIN_EXP_JOB_DATA = "FILTER_MIN_EXP_JOB_DATA"
 export const FILTER_REMOTE_ONSITE_DATA = "FILTER_REMOTE_ONSITE_DATA"
 export const FILTER_LOCATION_DATA = "FILTER_LOCATION_DATA"
+export const FILTER_COMPANY_NAME_DATA = "FILTER_COMPANY_NAME_DATA"
 export const FILTERS_APPLIED_STATE = "FILTERS_APPLIED_STATE"
 
 
@@ -34,13 +35,13 @@ export const FILTERS_APPLIED_STATE = "FILTERS_APPLIED_STATE"
 //     }
 // }
 
-export function fetchJobData(from, to){
-    let data =  [...getSampleJdJSON()]
+export function fetchJobData(from, to) {
+    let data = [...getSampleJdJSON()]
     let displayData = data.slice(from, to)
     return (dispatch, getState) => {
 
         const app = getState()
-        if(displayData < data.length){
+        if (displayData < data.length) {
             dispatch({
                 type: FETCH_JOB_DATA_END,
                 payload: true
@@ -49,13 +50,13 @@ export function fetchJobData(from, to){
             dispatch({
                 type: FETCH_JOB_DATA,
                 payload: displayData
-            }) 
+            })
         }
     }
 }
 
 
-export function handleJobDescriptionModal(val, job){
+export function handleJobDescriptionModal(val, job) {
     return {
         type: SHOW_JOB_DESCRIPTION,
         payload: {
@@ -65,30 +66,30 @@ export function handleJobDescriptionModal(val, job){
     }
 }
 
-export function filtersAppliedState(val){
+export function filtersAppliedState(val) {
     return {
         type: FILTERS_APPLIED_STATE,
         payload: val
     }
 }
 
-export function handleRoleFilterSelection(filterObj){
+export function handleRoleFilterSelection(filterObj) {
     return {
         type: FILTER_ROLE_JOB_DATA,
         filterData: filterObj
     }
 }
 
-export function handleRemoveRoleFilter(filterObj){
+export function handleRemoveRoleFilter(filterObj) {
     return {
         type: REMOVE_ROLE_FILTER,
         filterData: filterObj
     }
 }
 
-export function handleMinBasePayFilterSelection(filterObj){
+export function handleMinBasePayFilterSelection(filterObj) {
     return (dispatch) => {
-        if(filterObj.filterValue !== null){
+        if (filterObj.filterValue !== null) {
             dispatch(filtersAppliedState(true))
         }
         dispatch({
@@ -98,9 +99,9 @@ export function handleMinBasePayFilterSelection(filterObj){
     }
 }
 
-export function handleMinExpFilterSelection(filterObj){
+export function handleMinExpFilterSelection(filterObj) {
     return (dispatch) => {
-        if(filterObj.filterValue !== null){
+        if (filterObj.filterValue !== null) {
             dispatch(filtersAppliedState(true))
         }
         dispatch({
@@ -110,9 +111,9 @@ export function handleMinExpFilterSelection(filterObj){
     }
 }
 
-export function handleRemoteOnsiteFilterSelection(filterObj){
+export function handleRemoteOnsiteFilterSelection(filterObj) {
     return (dispatch) => {
-        if(filterObj.filterValue !== null){
+        if (filterObj.filterValue !== null) {
             dispatch(filtersAppliedState(true))
         }
         dispatch({
@@ -122,13 +123,25 @@ export function handleRemoteOnsiteFilterSelection(filterObj){
     }
 }
 
-export function handleLocationFilterSelection(filterObj){
+export function handleLocationFilterSelection(filterObj) {
     return (dispatch) => {
-        if(filterObj.filterValue){
+        if (filterObj.filterValue) {
             dispatch(filtersAppliedState(true))
         }
         dispatch({
             type: FILTER_LOCATION_DATA,
+            filterData: filterObj
+        })
+    }
+}
+
+export function handleCompanyNameSelection(filterObj) {
+    return (dispatch) => {
+        if (filterObj.filterValue) {
+            dispatch(filtersAppliedState(true))
+        }
+        dispatch({
+            type: FILTER_COMPANY_NAME_DATA,
             filterData: filterObj
         })
     }

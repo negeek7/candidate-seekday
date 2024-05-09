@@ -4,7 +4,7 @@ import styles from '../../styles/Filters.module.css'
 import MultiDropdownFilter from './MultiDropdownFilter';
 import SingleDropdownFilter from './SingleDropdownFilter';
 import InputFilter from './InputFilter';
-import { handleLocationFilterSelection, handleMinBasePayFilterSelection, handleMinExpFilterSelection, handleRemoteOnsiteFilterSelection, handleRoleFilterSelection } from '../../redux/actions/AppActions';
+import { handleCompanyNameSelection, handleLocationFilterSelection, handleMinBasePayFilterSelection, handleMinExpFilterSelection, handleRemoteOnsiteFilterSelection, handleRoleFilterSelection } from '../../redux/actions/AppActions';
 
 function Filters() {
 
@@ -29,11 +29,12 @@ function Filters() {
     }
 
     const handleTextFilter = (id, filterName, filterValue) => {
-        if(id === "location-filter"){
+        if (id === "location-filter") {
             debugger
-            dispatch(handleLocationFilterSelection({filterName, filterValue}))
-        } else if (id === "companyname-filter"){
-            dispatch(handleCompanyNameSelection({filterName, filterValue}))
+            dispatch(handleLocationFilterSelection({ filterName, filterValue }))
+        } else if (id === "companyname-filter") {
+            debugger
+            dispatch(handleCompanyNameSelection({ filterName, filterValue }))
         }
     }
 
