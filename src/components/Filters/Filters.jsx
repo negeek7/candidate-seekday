@@ -12,7 +12,7 @@ function Filters() {
     
     const filterData = useSelector(state => state.app.filterData)
 
-    const handleRoleFilterApply = (filterName, filterValues) => {
+    const handleMultiDropdownFilter = (filterName, filterValues) => {
         dispatch(handleRoleFilterSelection({filterName, filterValues}))
     }
     
@@ -36,7 +36,7 @@ function Filters() {
                 return (
                     <MultiDropdownFilter 
                         filter={filter} 
-                        handleRoleFilterApply={handleRoleFilterApply}
+                        handleMultiDropdownFilter={handleMultiDropdownFilter}
                     />
                 )
             case 'single-dropdown':

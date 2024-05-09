@@ -30,7 +30,7 @@ export const FILTERS_APPLIED_STATE = "FILTERS_APPLIED_STATE"
 //     }
 // }
 
-export function fetchJobData(from, to){
+export function fetchJobData(from, to, filtersApplied){
     let data =  [...getSampleJdJSON()]
     let displayData = data.slice(from, to)
     return (dispatch) => {
@@ -85,3 +85,7 @@ export function handleMinBasePayFilterSelection(filterObj){
         })
     }
 }
+
+// export const getMoreDataOnFilters = () => {
+//     if(filtersApplied)
+// }

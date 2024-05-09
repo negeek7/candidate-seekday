@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from '../../styles/MultiDropdownFilter.module.css';
 import { CaretDown, X } from '@phosphor-icons/react';
 
-function MultiDropdownFilter({ filter, handleRoleFilterApply }) {
+function MultiDropdownFilter({ filter, handleMultiDropdownFilter }) {
 
     const [showDropdown, setShowDropdown] = useState(false)
     const [appliedFilters, setAppliedFilters] = useState([])
@@ -16,7 +16,7 @@ function MultiDropdownFilter({ filter, handleRoleFilterApply }) {
     }
 
     useEffect(() => {
-        handleRoleFilterApply(filter.name, appliedFilters)
+        handleMultiDropdownFilter(filter.name, appliedFilters)
     }, [appliedFilters])
 
     const removeFilter = (value) => {
@@ -47,11 +47,11 @@ function MultiDropdownFilter({ filter, handleRoleFilterApply }) {
     return (
         <div className={styles.dropdown}>
 
-            <div className={styles.dropdownsubcontainer}>
+            <div className={styles.dropdownsubcontainer} onClick={toggleFilters}>
                 <div className={styles.appliedFilters}>{!appliedFilters.length ? "Roles" : showAppliedFilterValues()}
                 </div>
 
-                <CaretDown size={10} onClick={toggleFilters} className={styles.downArrow} />
+                <CaretDown size={10} className={styles.downArrow} />
             </div>
 
             <div id="myDropdown" className={styles.dropdownContent} style={showDropdown ? showDropDownStyle : hideDropdownStyle}>

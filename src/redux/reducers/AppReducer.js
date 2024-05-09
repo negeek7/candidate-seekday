@@ -65,14 +65,16 @@ export default function AppReducer(state = initialState, action) {
         case FILTERS_APPLIED_STATE:
             return {
                 ...state,
-                filtersApplied: action.val
+                filtersApplied: action.payload
             }   
         case FILTER_ROLE_JOB_DATA:
-            data = state.filteredjobData && state.filteredjobData.length > 0 ? state.filteredjobData : state.jobData 
+            data = state.jobData 
+            console.log(data, "DATAAAA")
             const filterRoleData = handleRoleFilter(data, action.filterData)
+            console.log(filterRoleData, "FILTER ROLE DATA")
             return {
                 ...state,
-                filteredjobData: [...state.filteredjobData, ...filterRoleData]
+                filteredjobData: filterRoleData
             }
 
         case FILTER_MIN_BASE_PAY_JOB_DATA:

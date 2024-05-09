@@ -28,7 +28,7 @@ function App() {
     //   offset: pageNum
     // }))
 
-    dispatch(fetchJobData(jobData.length, pageNum))
+    dispatch(fetchJobData(jobData.length, pageNum, filtersApplied))
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -62,11 +62,17 @@ function App() {
     dispatch(handleJobDescriptionModal(val, job))
   }
 
-  console.log(jobData, "JOBDATA")
-  console.log(endOfData, "END OF DATA")
+  console.log(filteredJobData, "filteredJobData")
+  console.log(filtersApplied, "filtersApplied")
 
   const renderJobData = () => {
-    if (filteredJobData.length === 0 && jobData.length > 1) {
+    if (filtersApplied && filteredJobData.length === 0) {
+      return (
+          <div>
+              No results found.
+          </div>
+      );
+  } else if (filteredJobData.length === 0 && jobData.length > 1) {
         return (
             <>
                 {jobData.map((job, index) => (
@@ -89,12 +95,6 @@ function App() {
                     />
                 ))}
             </>
-        );
-    } else if (filtersApplied && filteredJobData.length === 0) {
-        return (
-            <div>
-                No results found.
-            </div>
         );
     }
 };
