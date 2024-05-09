@@ -37,7 +37,6 @@ export function fetchJobData(from, to){
     return (dispatch, getState) => {
 
         const app = getState()
-        console.log(app, "APPP STATE")
         if(displayData < data.length){
             dispatch({
                 type: FETCH_JOB_DATA_END,
@@ -86,7 +85,7 @@ export function handleRemoveRoleFilter(filterObj){
 
 export function handleMinBasePayFilterSelection(filterObj){
     return (dispatch) => {
-        if(filterObj.filterValue){
+        if(filterObj.filterValue !== null){
             dispatch(filtersAppliedState(true))
         }
         dispatch({

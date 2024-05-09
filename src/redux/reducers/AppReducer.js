@@ -14,16 +14,19 @@ const initialState = {
         {
             name: "Minimum Base Pay",
             type: "single-dropdown",
+            uid: "min-basepay-filter",
             options: ["10", "20", "30", "40", "50", "60"],
         },
         {
             name: "Minimum Experience",
+            uid:"min-exp-filter",
             type: "single-dropdown",
             options: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
         },
         {
             name: "Remote / On site",
             type: "single-dropdown",
+            uid:"remote-onsite-filter",
             options: ["remote", "on site", "hybrid"],
         },
         {
@@ -36,6 +39,10 @@ const initialState = {
         },
     ],
     filteredjobData: [],
+    filteredRoleData: [],
+    filteredRemoteData: [],
+    filteredExperienceData: [],
+    filteredMinBasePayData: [],
     filtersApplied: false,
     endOfData: false
 }
@@ -86,10 +93,11 @@ export default function AppReducer(state = initialState, action) {
         case FILTER_MIN_BASE_PAY_JOB_DATA:
             data = state.filteredjobData && state.filteredjobData.length > 0 ? state.filteredjobData : state.jobData 
             let filterMinBasePayFilter = handleMinBasePayFilter(data, action.filterData)
+            console.log(filterMinBasePayFilter, "filterMinBasePayFilter")
             return {
                 ...state,
-                filteredjobData: [...state.filteredjobData, ...filterMinBasePayFilter],
-                filterMinBasePayData: action.filterData
+                filteredMinBasePayData: [...filterMinBasePayFilter],
+                filteredjobData: [...state.filteredjobData, ...state.filteredMinBasePayData],
             }
         
         default:

@@ -15,12 +15,11 @@ function Filters() {
     const handleMultiDropdownFilter = (filterName, filterValues) => {
         // dispatch(handleRoleFilterSelection({filterName, filterValues}))
         dispatch(handleRoleFilterSelection({filterName, filterValues}))
-        console.log("check 123")
     }
     
-    const handleSingleDropdownFilter = (filterName, filterValue) => {
-        if(filterName == "Minimum Base Pay"){
-            dispatch(handleMinBasePayFilterSelection({filterName, filterValue}))
+    const handleSingleDropdownFilter = (id, filterName, filterValue) => {
+        if(id == "min-basepay-filter"){
+            dispatch(handleMinBasePayFilterSelection({id, filterName, filterValue}))
         } else if (filterName == "Minimum Experience"){
             console.log("min experience filter")
         } else  if (filterName == "Remote / On site") {
@@ -33,16 +32,31 @@ function Filters() {
         }
     
     const renderFilter = (filter) => {
-        console.log(filter, "FFAA")
         switch (filter.type) {
-            case 'multi-dropdown-roles':
+            // case 'multi-dropdown-roles':
+            //     return (
+            //         <MultiDropdownFilter 
+            //             filter={filter} 
+            //             handleMultiDropdownFilter={handleMultiDropdownFilter}
+            //         />
+            //     )
+
+            case 'single-dropdown':
                 return (
-                    <MultiDropdownFilter 
-                        filter={filter} 
-                        handleMultiDropdownFilter={handleMultiDropdownFilter}
+                    <SingleDropdownFilter 
+                        handleSingleDropdownFilter={handleSingleDropdownFilter}
+                        filter={filter}
                     />
-                    // <p>Hello</p>
                 )
+
+            case "text":
+                return (
+                    <InputFilter 
+                        filter={filter}
+                        handleTextFilter={handleTextFilter}
+                    />
+                )
+            
             default:
                 return null
         }

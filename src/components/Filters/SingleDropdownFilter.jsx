@@ -8,7 +8,7 @@ function SingleDropdownFilter({ filter, handleSingleDropdownFilter  }) {
     const [showDropdown, setShowDropdown] = useState(false)
 
     useEffect(() => {
-        handleSingleDropdownFilter(filter.name, appliedFilter)
+        handleSingleDropdownFilter(filter.uid, filter.name, appliedFilter)
     }, [appliedFilter])
 
     const hideDropdownStyle = {

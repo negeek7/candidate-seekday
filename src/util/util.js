@@ -14,7 +14,7 @@ export function handleRoleRemoveFilter(data, filterValue){
 export function handleMinBasePayFilter(data, filterObj){
     let filterValue = filterObj.filterValue 
     let minBasePayData = data.filter(item => {
-        if(item.minJdSalary !== null && (filterValue > item.minJdSalary && filterValue < item.maxJdSalary)){
+        if(item.minJdSalary !== null && filterValue >= item.minJdSalary && filterValue < item.maxJdSalary){
             return item
         }
     })

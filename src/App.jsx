@@ -97,9 +97,6 @@ function App() {
     }
 };
 
-console.log(filteredJobData, "filteredJobData")
-console.log(filtersApplied, "filtersApplied")
-
   return (
     <div>
       <h1>Candidate Application Portal</h1>
