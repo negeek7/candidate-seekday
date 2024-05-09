@@ -55,9 +55,6 @@ function App() {
     }
   }, [filteredMinBasePayData, filteredMinExpData, filteredRemoteOnsiteData, filteredLocationData, filteredCompanyNameData])
 
-  console.log(filteredRemoteOnsiteData, "filteredRemoteOnsiteData")
-  console.log(filteredJobData, "filteredJobData")
-
   const handleScroll = () => {
     if (endOfData) return;
     if (debounceTimeout.current) {

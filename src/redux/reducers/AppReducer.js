@@ -124,7 +124,6 @@ export default function AppReducer(state = initialState, action) {
         case FILTER_LOCATION_DATA:
             data = state.jobData
             let filteredLocation = handleLocationFilter(data, action.filterData)
-            console.log(filteredLocation, "filteredLocation")
             return {
                 ...state,
                 filteredLocationData: [...filteredLocation]

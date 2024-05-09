@@ -18,7 +18,6 @@ function InputFilter({ filter, handleTextFilter }) {
   useEffect(() => {
     if (!initialRender) {
       clearTimeout(timeoutId)
-      console.log(filterValue, "filterValue")
       setTimeoutId(setTimeout(() => {
         performSearch()
       }, 2000))

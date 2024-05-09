@@ -2,7 +2,6 @@ export function handleRoleFilter(data, filterObj) {
     let values = filterObj.filterValues
     if (!values.length) return []
     let filteredData = data.filter(item => values.includes(item.jobRole))
-    console.log(filteredData, "ROLE filteredData")
     return filteredData
 }
 
@@ -40,7 +39,6 @@ export function handleRemoteOnsiteFilter(data, filterObj) {
             return item
         }
     })
-    console.log(remoteOnsiteData, "remoteOnsiteData")
     return remoteOnsiteData
 }
 
