@@ -31,7 +31,7 @@ export const FILTERS_APPLIED_STATE = "FILTERS_APPLIED_STATE"
 //     }
 // }
 
-export function fetchJobData(from, to, filtersApplied){
+export function fetchJobData(from, to){
     let data =  [...getSampleJdJSON()]
     let displayData = data.slice(from, to)
     return (dispatch, getState) => {
@@ -71,7 +71,6 @@ export function filtersAppliedState(val){
 }
 
 export function handleRoleFilterSelection(filterObj){
-    console.log(filterObj, "filterObj")
     return {
         type: FILTER_ROLE_JOB_DATA,
         filterData: filterObj

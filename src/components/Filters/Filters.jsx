@@ -13,7 +13,9 @@ function Filters() {
     const filterData = useSelector(state => state.app.filterData)
 
     const handleMultiDropdownFilter = (filterName, filterValues) => {
+        // dispatch(handleRoleFilterSelection({filterName, filterValues}))
         dispatch(handleRoleFilterSelection({filterName, filterValues}))
+        console.log("check 123")
     }
     
     const handleSingleDropdownFilter = (filterName, filterValue) => {
@@ -49,8 +51,8 @@ function Filters() {
     return (
         <div className={styles.filterscontainer}>
                 {
-                    filterData?.map((filterOption, index) => (
-                        <div key={index}>
+                    filterData.map(filterOption => (
+                        <div>
                             {renderFilter(filterOption)}
                         </div>
                     ))
