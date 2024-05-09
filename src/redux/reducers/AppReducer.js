@@ -1,5 +1,5 @@
-import { handleMinBasePayFilter, handleRoleFilter, handleRoleRemoveFilter } from "../../util/util";
-import { FETCH_JOB_DATA, FETCH_JOB_DATA_END, FILTERS_APPLIED_STATE, FILTER_MIN_BASE_PAY_JOB_DATA, FILTER_MIN_EXP_JOB_DATA, FILTER_ROLE_JOB_DATA, REMOVE_ROLE_FILTER, SHOW_JOB_DESCRIPTION } from "../actions/AppActions"
+import { handleMinBasePayFilter, handleRemoteOnsiteFilter, handleRoleFilter, handleRoleRemoveFilter } from "../../util/util";
+import { FETCH_JOB_DATA, FETCH_JOB_DATA_END, FILTERS_APPLIED_STATE, FILTER_MIN_BASE_PAY_JOB_DATA, FILTER_MIN_EXP_JOB_DATA, FILTER_REMOTE_ONSITE_DATA, FILTER_ROLE_JOB_DATA, REMOVE_ROLE_FILTER, SHOW_JOB_DESCRIPTION, handleRemoteOnsiteFilterSelection } from "../actions/AppActions"
 
 const initialState = {
     jobDescriptionModalState: false,
@@ -19,15 +19,15 @@ const initialState = {
         },
         {
             name: "Minimum Experience",
-            uid:"min-exp-filter",
+            uid: "min-exp-filter",
             type: "single-dropdown",
             options: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
         },
         {
             name: "Remote / On site",
             type: "single-dropdown",
-            uid:"remote-onsite-filter",
-            options: ["remote", "on site", "hybrid"],
+            uid: "remote-onsite-filter",
+            options: ["remote", "on site"],
         },
         {
             name: "Location",
@@ -40,7 +40,7 @@ const initialState = {
     ],
     filteredjobData: [],
     filteredRoleData: [],
-    filteredRemoteData: [],
+    filteredRemoteOnsiteData: [],
     filteredMinExpData: [],
     filteredMinBasePayData: [],
     filtersApplied: false,
@@ -50,7 +50,7 @@ const initialState = {
 export default function AppReducer(state = initialState, action) {
 
     let data;
-    switch(action.type){
+    switch (action.type) {
 
         case FETCH_JOB_DATA:
             return {
@@ -73,7 +73,7 @@ export default function AppReducer(state = initialState, action) {
             return {
                 ...state,
                 filtersApplied: action.payload
-            }   
+            }
         case FILTER_ROLE_JOB_DATA:
             // data = state.jobData
             // let arg1 = !state.filteredjobData.length ? state.filteredjobData : data
@@ -91,7 +91,7 @@ export default function AppReducer(state = initialState, action) {
 
 
         case FILTER_MIN_BASE_PAY_JOB_DATA:
-            data = state.jobData 
+            data = state.jobData
             let filteredMinBasePay = handleMinBasePayFilter(data, action.filterData)
             return {
                 ...state,
@@ -100,14 +100,23 @@ export default function AppReducer(state = initialState, action) {
             }
 
         case FILTER_MIN_EXP_JOB_DATA:
-            data = state.jobData 
+            data = state.jobData
             let filteredMinExp = handleMinBasePayFilter(data, action.filterData)
             return {
                 ...state,
                 filteredMinExpData: [...filteredMinExp],
                 filteredjobData: [...state.filteredjobData, ...state.filteredMinBasePayData],
             }
-        
+
+        case FILTER_REMOTE_ONSITE_DATA:
+            data = state.jobData
+            let filteredRemoteOnsite = handleRemoteOnsiteFilter(data, action.filterData)
+            return {
+                ...state,
+                filteredRemoteOnsiteData: [...filteredRemoteOnsite],
+                filteredjobData: [...state.filteredjobData, ...state.filteredMinBasePayData],
+            }
+
         default:
             return state
     }

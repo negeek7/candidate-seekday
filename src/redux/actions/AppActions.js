@@ -8,6 +8,7 @@ export const FILTER_ROLE_JOB_DATA = "FILTER_ROLE_JOB_DATA"
 export const REMOVE_ROLE_FILTER = "REMOVE_ROLE_FILTER"
 export const FILTER_MIN_BASE_PAY_JOB_DATA = "FILTER_MIN_BASE_PAY_JOB_DATA"
 export const FILTER_MIN_EXP_JOB_DATA = "FILTER_MIN_EXP_JOB_DATA"
+export const FILTER_REMOTE_ONSITE_DATA = "FILTER_REMOTE_ONSITE_DATA"
 export const FILTERS_APPLIED_STATE = "FILTERS_APPLIED_STATE"
 
 
@@ -103,6 +104,18 @@ export function handleMinExpFilterSelection(filterObj){
         }
         dispatch({
             type: FILTER_MIN_EXP_JOB_DATA,
+            filterData: filterObj
+        })
+    }
+}
+
+export function handleRemoteOnsiteFilterSelection(filterObj){
+    return (dispatch) => {
+        if(filterObj.filterValue !== null){
+            dispatch(filtersAppliedState(true))
+        }
+        dispatch({
+            type: FILTER_REMOTE_ONSITE_DATA,
             filterData: filterObj
         })
     }

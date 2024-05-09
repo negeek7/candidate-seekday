@@ -4,33 +4,34 @@ import styles from '../../styles/Filters.module.css'
 import MultiDropdownFilter from './MultiDropdownFilter';
 import SingleDropdownFilter from './SingleDropdownFilter';
 import InputFilter from './InputFilter';
-import {  handleMinBasePayFilterSelection, handleMinExpFilterSelection, handleRoleFilterSelection } from '../../redux/actions/AppActions';
+import { handleMinBasePayFilterSelection, handleMinExpFilterSelection, handleRemoteOnsiteFilterSelection, handleRoleFilterSelection } from '../../redux/actions/AppActions';
 
 function Filters() {
 
     const dispatch = useDispatch()
-    
+
     const filterData = useSelector(state => state.app.filterData)
 
     const handleMultiDropdownFilter = (filterName, filterValues) => {
         // dispatch(handleRoleFilterSelection({filterName, filterValues}))
-        dispatch(handleRoleFilterSelection({filterName, filterValues}))
+        dispatch(handleRoleFilterSelection({ filterName, filterValues }))
     }
-    
+
     const handleSingleDropdownFilter = (id, filterName, filterValue) => {
-        if(id == "min-basepay-filter"){
-            dispatch(handleMinBasePayFilterSelection({id, filterName, filterValue}))
-        } else if (filterName == "Minimum Experience"){
-            dispatch(handleMinExpFilterSelection({id, filterName, filterValue}))
-        } else  if (filterName == "Remote / On site") {
-            console.log("remote filter")
+        if (id == "min-basepay-filter") {
+            dispatch(handleMinBasePayFilterSelection({ id, filterName, filterValue }))
+        } else if (id == "min-exp-filter") {
+            dispatch(handleMinExpFilterSelection({ id, filterName, filterValue }))
+        } else if (id == "remote-onsite-filter") {
+            console.log(id, filterName, filterValue, "REACHED HERE")
+            dispatch(handleRemoteOnsiteFilterSelection({ id, filterName, filterValue }))
         }
     }
 
-        const handleTextFilter = () => {
-            console.log("handle text filter")
-        }
-    
+    const handleTextFilter = (id, filterName, filterValue) => {
+        
+    }
+
     const renderFilter = (filter) => {
         switch (filter.type) {
             // case 'multi-dropdown-roles':
@@ -43,7 +44,7 @@ function Filters() {
 
             case 'single-dropdown':
                 return (
-                    <SingleDropdownFilter 
+                    <SingleDropdownFilter
                         handleSingleDropdownFilter={handleSingleDropdownFilter}
                         filter={filter}
                     />
@@ -51,12 +52,12 @@ function Filters() {
 
             case "text":
                 return (
-                    <InputFilter 
+                    <InputFilter
                         filter={filter}
                         handleTextFilter={handleTextFilter}
                     />
                 )
-            
+
             default:
                 return null
         }
@@ -64,13 +65,13 @@ function Filters() {
 
     return (
         <div className={styles.filterscontainer}>
-                {
-                    filterData.map(filterOption => (
-                        <div>
-                            {renderFilter(filterOption)}
-                        </div>
-                    ))
-                }
+            {
+                filterData.map(filterOption => (
+                    <div>
+                        {renderFilter(filterOption)}
+                    </div>
+                ))
+            }
         </div>
     )
 }

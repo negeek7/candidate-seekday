@@ -24,6 +24,7 @@ function App() {
   const filtersApplied = useSelector(state => state.app.filtersApplied)
   const filteredMinBasePayData = useSelector(state => state.app.filteredMinBasePayData)
   const filteredMinExpData = useSelector(state => state.app.filteredMinExpData)
+  const filteredRemoteOnsiteData = useSelector(state => state.app.filteredRemoteOnsiteData)
 
 
   useEffect(() => {
@@ -38,27 +39,27 @@ function App() {
   }, [pageNum])
 
   useEffect(() => {
-    if(endOfData){
+    if (endOfData) {
       window.removeEventListener('scroll', handleScroll);
     }
   }, [endOfData])
 
   useEffect(() => {
-    if(filteredMinBasePayData || filteredMinExpData){
-      setFilteredJobData([...filteredMinBasePayData, ...filteredMinExpData])
+    if (filteredMinBasePayData || filteredMinExpData) {
+      setFilteredJobData([...filteredMinBasePayData, ...filteredMinExpData, ...filteredRemoteOnsiteData])
     }
-  }, [filteredMinBasePayData, filteredMinExpData])
+  }, [filteredMinBasePayData, filteredMinExpData, filteredRemoteOnsiteData])
 
   console.log(filteredMinBasePayData, "filteredMinBasePayData")
 
   const handleScroll = () => {
-    if(endOfData) return;
+    if (endOfData) return;
     if (debounceTimeout.current) {
 
       // clear timeout to prevent multiple calls on fast scrolling
       clearTimeout(debounceTimeout.current);
     }
-    
+
     // settimeout ensurees that pageNum state changes or api gets called after a specific delay after last scroll, this will prevent mulitple scroll event
     debounceTimeout.current = setTimeout(() => {
       const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
@@ -77,41 +78,41 @@ function App() {
   const renderJobData = () => {
     if (filtersApplied && filteredJobData?.length === 0) {
       return (
-          <div>
-              No results found.
-          </div>
+        <div>
+          No results found.
+        </div>
       );
-  } else if (filteredJobData?.length === 0 && jobData?.length > 0) {
-        return (
-            <>
-                {jobData.map((job, index) => (
-                    <JobCard
-                        key={index}
-                        handleViewJob={handleViewJob}
-                        job={job}
-                    />
-                ))}
-            </>
-        );
+    } else if (filteredJobData?.length === 0 && jobData?.length > 0) {
+      return (
+        <>
+          {jobData.map((job, index) => (
+            <JobCard
+              key={index}
+              handleViewJob={handleViewJob}
+              job={job}
+            />
+          ))}
+        </>
+      );
     } else if (filteredJobData?.length > 0) {
-        return (
-            <>
-                {filteredJobData.map((job, index) => (
-                    <JobCard
-                        key={index}
-                        handleViewJob={handleViewJob}
-                        job={job}
-                    />
-                ))}
-            </>
-        );
+      return (
+        <>
+          {filteredJobData.map((job, index) => (
+            <JobCard
+              key={index}
+              handleViewJob={handleViewJob}
+              job={job}
+            />
+          ))}
+        </>
+      );
     }
-};
+  };
 
   return (
     <div>
       <h1>Candidate Application Portal</h1>
-        <Filters />
+      <Filters />
       <div className={styles.jobCardContainer}>
         {renderJobData()}
       </div>
@@ -123,7 +124,7 @@ function App() {
         </div>
       }
       {
-        jobDescriptionModalState && <JobDescriptionModal onClose={() => handleViewJob(false)}/>
+        jobDescriptionModalState && <JobDescriptionModal onClose={() => handleViewJob(false)} />
       }
     </div>
   )

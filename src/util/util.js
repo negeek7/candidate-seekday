@@ -31,8 +31,17 @@ export function handleMinExpFilter(data, filterObj){
     return minExpJobData
 }
 
-function handleLocationFilter(){
-
+export function handleRemoteOnsiteFilter(data, filterObj){
+    let filterValue = filterObj.filterValue 
+    let remoteOnsiteData = data.filter(item => {
+        if(filterValue == "remote" && item.location == "remote"){
+            return item
+        } else if (filterValue == "on site" && item.location !== "remote") {
+            return item
+        }
+    })
+    console.log(remoteOnsiteData, "remoteOnsiteData")
+    return remoteOnsiteData
 }
 
 function handleCompnayNameFilter(){
