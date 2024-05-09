@@ -5,6 +5,7 @@ function InputFilter({ filter, handleTextFilter }) {
 
   const [filterValue, setFilterValue] = useState('')
   const [timeoutId, setTimeoutId] = useState(null);
+  const [initialRender, setInitialRender] = useState(true)
 
   const handleInput = (e) => {
     setFilterValue(e.target.value)
@@ -15,11 +16,14 @@ function InputFilter({ filter, handleTextFilter }) {
   }
 
   useEffect(() => {
-    clearTimeout(timeoutId)
-    if(filterValue){
-      setTimeoutId(setTimeout(() => {
-        performSearch()
-      }, 2000))
+    if(!initialRender){
+      clearTimeout(timeoutId)
+        console.log(filterValue, "filterValue")
+        setTimeoutId(setTimeout(() => {
+          performSearch()
+        }, 2000))
+    } else {
+      setInitialRender(false)
     }
   }, [filterValue])
 
@@ -30,6 +34,7 @@ function InputFilter({ filter, handleTextFilter }) {
         placeholder={`Search ${filter.name}`}
         value={filterValue}
         onChange={handleInput}
+        onInput={handleInput}
         className={styles.inputField}
       />
     </div>

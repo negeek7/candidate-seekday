@@ -30,6 +30,7 @@ function Filters() {
 
     const handleTextFilter = (id, filterName, filterValue) => {
         if(id === "location-filter"){
+            debugger
             dispatch(handleLocationFilterSelection({filterName, filterValue}))
         } else if (id === "companyname-filter"){
             dispatch(handleCompanyNameSelection({filterName, filterValue}))

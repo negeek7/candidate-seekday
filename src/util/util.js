@@ -46,6 +46,7 @@ export function handleRemoteOnsiteFilter(data, filterObj){
 
 export function handleLocationFilter(data, filterObj){
     let filterValue = filterObj.filterValue 
+    if(filterValue == '') return data
     let locationData = data.filter(item => {
         return item.location.includes(filterValue)
     })
