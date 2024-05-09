@@ -11,6 +11,7 @@ function App() {
 
   const dispatch = useDispatch()
   const [pageNum, setPageNum] = useState(10)
+  const [filteredJobData, setFilteredJobData] = useState([])
 
   // reference to hold the debounce timeoutId
   const debounceTimeout = useRef(null);
@@ -18,16 +19,17 @@ function App() {
 
   const jobData = useSelector(state => state.app.jobData)
   const endOfData = useSelector(state => state.app.endOfData)
-  const filteredJobData = useSelector(state => state.app.filteredjobData)
+  // const filteredJobData = useSelector(state => state.app.filteredjobData)
   const jobDescriptionModalState = useSelector(state => state.app.jobDescriptionModalState)
   const filtersApplied = useSelector(state => state.app.filtersApplied)
+  const filteredMinBasePayData = useSelector(state => state.app.filteredMinBasePayData)
+
 
   useEffect(() => {
     // dispatch(fetchJobData({
     //   limit: 10,
     //   offset: pageNum
     // }))
-
     dispatch(fetchJobData(jobData.length, pageNum))
 
     window.addEventListener('scroll', handleScroll);
@@ -39,6 +41,14 @@ function App() {
       window.removeEventListener('scroll', handleScroll);
     }
   }, [endOfData])
+
+  useEffect(() => {
+    if(filteredMinBasePayData){
+      setFilteredJobData([...filteredMinBasePayData])
+    }
+  }, [filteredMinBasePayData])
+
+  console.log(filteredMinBasePayData, "filteredMinBasePayData")
 
   const handleScroll = () => {
     if(endOfData) return;

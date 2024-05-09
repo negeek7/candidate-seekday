@@ -91,7 +91,7 @@ export default function AppReducer(state = initialState, action) {
 
 
         case FILTER_MIN_BASE_PAY_JOB_DATA:
-            data = state.filteredjobData && state.filteredjobData.length > 0 ? state.filteredjobData : state.jobData 
+            data = state.jobData 
             let filterMinBasePayFilter = handleMinBasePayFilter(data, action.filterData)
             console.log(filterMinBasePayFilter, "filterMinBasePayFilter")
             return {
