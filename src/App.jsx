@@ -62,8 +62,6 @@ function App() {
     dispatch(handleJobDescriptionModal(val, job))
   }
 
-  console.log(filteredJobData, "filteredJobData")
-  console.log(filtersApplied, "filtersApplied")
 
   const renderJobData = () => {
     if (filtersApplied && filteredJobData.length === 0) {
@@ -98,6 +96,8 @@ function App() {
         );
     }
 };
+
+console.log(filtersApplied, "filtersApplied")
 
   return (
     <div>

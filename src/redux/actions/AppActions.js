@@ -68,7 +68,9 @@ export function filtersAppliedState(val){
 
 export function handleRoleFilterSelection(filterObj){
     return (dispatch) => {
-        dispatch(filtersAppliedState(true))
+        if(filterObj.filterValue){
+            dispatch(filtersAppliedState(true))
+        }
         dispatch({
             type: FILTER_ROLE_JOB_DATA,
             filterData: filterObj
@@ -78,7 +80,9 @@ export function handleRoleFilterSelection(filterObj){
 
 export function handleMinBasePayFilterSelection(filterObj){
     return (dispatch) => {
-        dispatch(filtersAppliedState(true))
+        if(filterObj.filterValue){
+            dispatch(filtersAppliedState(true))
+        }
         dispatch({
             type: FILTER_MIN_BASE_PAY_JOB_DATA,
             filterData: filterObj
