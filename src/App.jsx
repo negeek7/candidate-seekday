@@ -77,9 +77,11 @@ function App() {
     dispatch(handleJobDescriptionModal(val, job))
   }
 
+  console.log(filtersApplied, "filtersApplied")
+
 
   const renderJobData = () => {
-    if (filtersApplied && filteredJobData?.length === 0) {
+    if (!!Object.keys(filtersApplied).length && filteredJobData?.length === 0) {
       return (
         <div>
           No results found.

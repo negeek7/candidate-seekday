@@ -5,6 +5,7 @@ import MultiDropdownFilter from './MultiDropdownFilter';
 import SingleDropdownFilter from './SingleDropdownFilter';
 import InputFilter from './InputFilter';
 import { handleCompanyNameSelection, handleLocationFilterSelection, handleMinBasePayFilterSelection, handleMinExpFilterSelection, handleRemoteOnsiteFilterSelection, handleRoleFilterSelection } from '../../redux/actions/AppActions';
+import { companyNameFilter, locationFilter, minBasePayFilter, minExperienceFilter, remoteOnSiteFilter } from '../../../constants/filterConstants';
 
 function Filters() {
 
@@ -18,19 +19,19 @@ function Filters() {
     }
 
     const handleSingleDropdownFilter = (id, filterName, filterValue) => {
-        if (id == "min-basepay-filter") {
+        if (id == minBasePayFilter) {
             dispatch(handleMinBasePayFilterSelection({ id, filterName, filterValue }))
-        } else if (id == "min-exp-filter") {
+        } else if (id == minExperienceFilter) {
             dispatch(handleMinExpFilterSelection({ id, filterName, filterValue }))
-        } else if (id == "remote-onsite-filter") {
+        } else if (id == remoteOnSiteFilter) {
             dispatch(handleRemoteOnsiteFilterSelection({ id, filterName, filterValue }))
         }
     }
 
     const handleTextFilter = (id, filterName, filterValue) => {
-        if (id === "location-filter") {
+        if (id === locationFilter) {
             dispatch(handleLocationFilterSelection({ id, filterName, filterValue }))
-        } else if (id === "companyname-filter") {
+        } else if (id === companyNameFilter) {
             dispatch(handleCompanyNameSelection({ id, filterName, filterValue }))
         }
     }
