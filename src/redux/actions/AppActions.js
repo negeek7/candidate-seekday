@@ -89,78 +89,19 @@ export function filtersApplied(data){
     }
 }
 
-// export function handleMinBasePayFilterSelection(filterObj) {
-//     return (dispatch) => {
-//         if (filterObj.filterValue !== null) {
-//             dispatch(filtersApplied({name:filterObj.id, value: filterObj.filterValue}))
-//         }
-//         dispatch({
-//             type: FILTER_MIN_BASE_PAY_JOB_DATA,
-//             filterData: filterObj
-//         })
-//     }
-// }
-
-// export function handleMinExpFilterSelection(filterObj) {
-//     return (dispatch) => {
-//         if (filterObj.filterValue !== null) {
-//             dispatch(filtersApplied({name:filterObj.id, value: filterObj.filterValue}))
-//         }
-//         dispatch({
-//             type: FILTER_MIN_EXP_JOB_DATA,
-//             filterData: filterObj
-//         })
-//     }
-// }
-
-// export function handleRemoteOnsiteFilterSelection(filterObj) {
-//     return (dispatch) => {
-//         if (filterObj.filterValue !== null) {
-//             dispatch(filtersApplied({name:filterObj.id, value: filterObj.filterValue}))
-//         }
-//         dispatch({
-//             type: FILTER_REMOTE_ONSITE_DATA,
-//             filterData: filterObj
-//         })
-//     }
-// }
-
-// export function handleLocationFilterSelection(filterObj) {
-//     return (dispatch) => {
-//             dispatch(filtersApplied({name:filterObj.id, value: filterObj.filterValue}))
-//         dispatch({
-//             type: FILTER_LOCATION_DATA,
-//             filterData: filterObj
-//         })
-//     }
-// }
-
-// export function handleCompanyNameSelection(filterObj) {
-//     return (dispatch) => {
-//             dispatch(filtersApplied({name:filterObj.id, value: filterObj.filterValue}))
-//         dispatch({
-//             type: FILTER_COMPANY_NAME_DATA,
-//             filterData: filterObj
-//         })
-//     }
-// }
 
 export function removeAppliedFilters(value){
-
     return {
         type: REMOVE_APPLIED_FILTERS,
         value
     }
-
 }
 
 export function applyFilters(appliedFilters){
-
     return {
         type: APPLY_FILTER,
         data: appliedFilters
     }
-
 } 
 
 // export const getMoreDataOnFilters = () => {

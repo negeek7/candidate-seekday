@@ -5,7 +5,7 @@ import MultiDropdownFilter from './MultiDropdownFilter';
 import SingleDropdownFilter from './SingleDropdownFilter';
 import InputFilter from './InputFilter';
 // import { filtersApplied, handleCompanyNameSelection, handleLocationFilterSelection, handleMinBasePayFilterSelection, handleMinExpFilterSelection, handleRemoteOnsiteFilterSelection, handleRoleFilterSelection } from '../../redux/actions/AppActions';
-import { filtersApplied } from '../../redux/actions/AppActions';
+import { filtersApplied, removeAppliedFilters } from '../../redux/actions/AppActions';
 import { companyNameFilter, locationFilter, minBasePayFilter, minExperienceFilter, remoteOnSiteFilter } from '../../../constants/filterConstants';
 
 function Filters() {
@@ -31,6 +31,11 @@ function Filters() {
         dispatch(filtersApplied({name: id, value: filterValue}))
     }
 
+    const handleRemoveFilter = (id, filterName, filterValue) => {
+        console.log(id, filterName, filterValue)
+        dispatch(removeAppliedFilters(id))
+    }
+
     const renderFilter = (filter) => {
         switch (filter.type) {
             // case 'multi-dropdown-roles':
@@ -45,6 +50,7 @@ function Filters() {
                 return (
                     <SingleDropdownFilter
                         handleSingleDropdownFilter={handleSingleDropdownFilter}
+                        handleRemoveFilter={handleRemoveFilter}
                         filter={filter}
                     />
                 )

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../../styles/SingleDropdownFilter.module.css'
-import { CaretDown } from '@phosphor-icons/react';
+import { CaretDown, X } from '@phosphor-icons/react';
 
-function SingleDropdownFilter({ filter, handleSingleDropdownFilter  }) {
+function SingleDropdownFilter({ filter, handleSingleDropdownFilter, handleRemoveFilter  }) {
 
     const [appliedFilter, setAppliedFilter] = useState(null)
     const [showDropdown, setShowDropdown] = useState(false)
@@ -25,12 +25,19 @@ function SingleDropdownFilter({ filter, handleSingleDropdownFilter  }) {
         setShowDropdown(!showDropdown)
     }
 
+    const removeFilter = (e) => {
+        e.stopPropagation()
+        handleRemoveFilter(filter.uid)
+        setAppliedFilter(null)
+    }
+
 
     const showAppliedFilter = () => {
         return (
-            <>
+            <div className={styles.appliedvalue}>
                 <span>{appliedFilter}</span>
-            </>
+                <X size={14} className={styles.appliedvaluecross} onClick={(e) => removeFilter(e)}/> 
+            </div>
         )
     }
 
@@ -42,8 +49,8 @@ function SingleDropdownFilter({ filter, handleSingleDropdownFilter  }) {
     <div className={styles.dropdown}>
 
             <div className={styles.dropdownsubcontainer} onClick={toggleFilters}>
-                <span className={styles.appliedFilters}>{appliedFilter == null ? filter.name : showAppliedFilter()}
-                </span>
+                    <span className={styles.appliedFilters}>{appliedFilter == null ? filter.name : showAppliedFilter()}
+                    </span>
                 
                 <CaretDown size={10} className={styles.downArrow}/>
             </div>

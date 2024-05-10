@@ -66,31 +66,22 @@ function App() {
   }
 
   useEffect(() => {
-    if(Object.keys(filtersApplied).length){
-      dispatch(applyFilters(filtersApplied))
-    } else {
-      return;
-    }
+    dispatch(applyFilters(filtersApplied))
   }, [filtersApplied])
 
   useEffect(() => {
-    if(reduxFilteredJobData.length){
-      setFilteredJobData(reduxFilteredJobData)
-    }
+    setFilteredJobData(reduxFilteredJobData)
   }, [reduxFilteredJobData])
 
-  console.log(reduxFilteredJobData, "reduxFilteredJobData")
-  console.log(jobData)
-
   const renderJobData = () => {
-    if (Object.keys(filtersApplied).length > 0 && filteredJobData?.length === 0) {
+    if (Object.keys(filtersApplied).length && !filteredJobData.length) {
       return (
         <div>
           No results found.
         </div>
       );
     } 
-    if (filteredJobData?.length === 0 && jobData?.length > 0) {
+    if (!filteredJobData.length && jobData.length) {
     return (
         <>
           {jobData.map((job, index) => (
@@ -102,7 +93,7 @@ function App() {
           ))}
         </>
       );
-    } else if (filteredJobData?.length > 0) {
+    } else if (filteredJobData.length) {
       return (
         <>
           {filteredJobData.map((job, index) => (

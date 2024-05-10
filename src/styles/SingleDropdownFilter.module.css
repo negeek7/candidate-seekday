@@ -30,7 +30,14 @@
 .downArrow{
     cursor: pointer;
 }
-
+.appliedvalue{
+    border: 1px solid  red;
+    display: flex;
+    align-items: center;
+}
+.appliedvaluecross:hover{
+    background-color: rgba(164, 10, 10, 0.59);
+}
 @media (max-width: 768px) {
     .dropdown{
         width: 170px;
