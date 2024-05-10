@@ -4,8 +4,9 @@ import styles from './styles/App.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import JobCard from './components/JobCard'
 import JobDescriptionModal from './components/Modals/JobDescriptionModal'
-import { fetchJobData, handleJobDescriptionModal } from './redux/actions/AppActions';
+import { applyFilters, fetchJobData, handleJobDescriptionModal, removeAppliedFilters } from './redux/actions/AppActions';
 import Filters from './components/Filters/Filters';
+import { companyNameFilter, locationFilter } from '../constants/filterConstants';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
   const filteredRemoteOnsiteData = useSelector(state => state.app.filteredRemoteOnsiteData)
   const filteredLocationData = useSelector(state => state.app.filteredLocationData)
   const filteredCompanyNameData = useSelector(state => state.app.filteredCompanyNameData)
+  const reduxFilteredJobData = useSelector(state => state.app.reduxFilteredJobData)
 
 
   useEffect(() => {
@@ -46,14 +48,6 @@ function App() {
     }
   }, [endOfData])
 
-  useEffect(() => {
-    if (filteredLocationData.length || filteredCompanyNameData.length) {
-      setFilteredJobData([...filteredLocationData, ...filteredCompanyNameData]);
-    } 
-    if(filteredMinBasePayData || filteredMinExpData || filteredRemoteOnsiteData) {
-      setFilteredJobData([...filteredMinBasePayData, ...filteredMinExpData, ...filteredRemoteOnsiteData])
-    }
-  }, [filteredMinBasePayData, filteredMinExpData, filteredRemoteOnsiteData, filteredLocationData, filteredCompanyNameData])
 
   const handleScroll = () => {
     if (endOfData) return;
@@ -78,17 +72,37 @@ function App() {
   }
 
   console.log(filtersApplied, "filtersApplied")
+  console.log(filteredLocationData, "filteredLocationData ")
+  console.log(filteredJobData, "FILTERED JOB DATA")
+
+  useEffect(() => {
+    if(Object.keys(filtersApplied).length){
+      console.log("run apply filters")
+      dispatch(applyFilters(filtersApplied))
+    } else {
+      return;
+    }
+  }, [filtersApplied])
+
+  useEffect(() => {
+    if(reduxFilteredJobData.length){
+      setFilteredJobData(reduxFilteredJobData)
+    }
+  }, [reduxFilteredJobData])
+
+  console.log(reduxFilteredJobData, "reduxFilteredJobData")
 
 
   const renderJobData = () => {
-    if (!!Object.keys(filtersApplied).length && filteredJobData?.length === 0) {
+    if (Object.keys(filtersApplied).length > 0 && filteredJobData?.length === 0) {
       return (
         <div>
           No results found.
         </div>
       );
-    } else if (filteredJobData?.length === 0 && jobData?.length > 0) {
-      return (
+    } 
+    if (filteredJobData?.length === 0 && jobData?.length > 0) {
+    return (
         <>
           {jobData.map((job, index) => (
             <JobCard
@@ -122,7 +136,6 @@ function App() {
         {renderJobData()}
       </div>
       {
-
         endOfData &&
         <div className={styles.endofdata}>
           No More Data To Show.

@@ -7,9 +7,9 @@ function SingleDropdownFilter({ filter, handleSingleDropdownFilter  }) {
     const [appliedFilter, setAppliedFilter] = useState(null)
     const [showDropdown, setShowDropdown] = useState(false)
 
-    useEffect(() => {
-        handleSingleDropdownFilter(filter.uid, filter.name, appliedFilter)
-    }, [appliedFilter])
+    // useEffect(() => {
+    //     handleSingleDropdownFilter(filter.uid, filter.name, appliedFilter)
+    // }, [appliedFilter])
 
     const hideDropdownStyle = {
         display: "none"
@@ -21,6 +21,7 @@ function SingleDropdownFilter({ filter, handleSingleDropdownFilter  }) {
 
     const handleDropdownClick = (option) => {
         setAppliedFilter(option)
+        handleSingleDropdownFilter(filter.uid, filter.name, option)
         setShowDropdown(!showDropdown)
     }
 

@@ -1,6 +1,6 @@
 import { companyNameFilter, locationFilter, minBasePayFilter, minExperienceFilter, remoteOnSiteFilter } from "../../../constants/filterConstants";
 import { handleCompanyNameFilter, handleLocationFilter, handleMinBasePayFilter, handleMinExpFilter, handleRemoteOnsiteFilter, handleRoleFilter, handleRoleRemoveFilter } from "../../util/util";
-import { FETCH_JOB_DATA, FETCH_JOB_DATA_END, FILTERS_APPLIED, FILTER_COMPANY_NAME_DATA, FILTER_LOCATION_DATA, FILTER_MIN_BASE_PAY_JOB_DATA, FILTER_MIN_EXP_JOB_DATA, FILTER_REMOTE_ONSITE_DATA, FILTER_ROLE_JOB_DATA, REMOVE_ROLE_FILTER, SHOW_JOB_DESCRIPTION, handleRemoteOnsiteFilterSelection } from "../actions/AppActions"
+import { APPLY_FILTER, FETCH_JOB_DATA, FETCH_JOB_DATA_END, FILTERS_APPLIED, FILTER_COMPANY_NAME_DATA, FILTER_LOCATION_DATA, FILTER_MIN_BASE_PAY_JOB_DATA, FILTER_MIN_EXP_JOB_DATA, FILTER_REMOTE_ONSITE_DATA, FILTER_ROLE_JOB_DATA, REMOVE_APPLIED_FILTERS, REMOVE_ROLE_FILTER, SHOW_JOB_DESCRIPTION } from "../actions/AppActions"
 
 const initialState = {
     jobDescriptionModalState: false,
@@ -49,7 +49,8 @@ const initialState = {
     filteredLocationData: [],
     filteredCompanyNameData: [],
     filtersApplied: {},
-    endOfData: false
+    endOfData: false,
+    reduxFilteredJobData: []
 }
 
 export default function AppReducer(state = initialState, action) {
@@ -89,32 +90,32 @@ export default function AppReducer(state = initialState, action) {
             }
 
 
-        case FILTER_MIN_BASE_PAY_JOB_DATA:
-            data = state.jobData
-            let filteredMinBasePay = handleMinBasePayFilter(data, action.filterData)
-            return {
-                ...state,
-                filteredMinBasePayData: [...filteredMinBasePay],
-                filteredjobData: [...state.filteredjobData, ...state.filteredMinBasePayData],
-            }
+        // case FILTER_MIN_BASE_PAY_JOB_DATA:
+        //     data = state.jobData
+        //     let filteredMinBasePay = handleMinBasePayFilter(data, action.filterData)
+        //     return {
+        //         ...state,
+        //         filteredMinBasePayData: [...filteredMinBasePay],
+        //         filteredjobData: [...state.filteredjobData, ...state.filteredMinBasePayData],
+        //     }
 
-        case FILTER_MIN_EXP_JOB_DATA:
-            data = state.jobData
-            let filteredMinExp = handleMinExpFilter(data, action.filterData)
-            return {
-                ...state,
-                filteredMinExpData: [...filteredMinExp],
-                filteredjobData: [...state.filteredjobData, ...state.filteredMinBasePayData],
-            }
+        // case FILTER_MIN_EXP_JOB_DATA:
+        //     data = state.jobData
+        //     let filteredMinExp = handleMinExpFilter(data, action.filterData)
+        //     return {
+        //         ...state,
+        //         filteredMinExpData: [...filteredMinExp],
+        //         filteredjobData: [...state.filteredjobData, ...state.filteredMinBasePayData],
+        //     }
 
-        case FILTER_REMOTE_ONSITE_DATA:
-            data = state.jobData
-            let filteredRemoteOnsite = handleRemoteOnsiteFilter(data, action.filterData)
-            return {
-                ...state,
-                filteredRemoteOnsiteData: [...filteredRemoteOnsite],
-                filteredjobData: [...state.filteredjobData, ...state.filteredMinBasePayData],
-            }
+        // case FILTER_REMOTE_ONSITE_DATA:
+        //     data = state.jobData
+        //     let filteredRemoteOnsite = handleRemoteOnsiteFilter(data, action.filterData)
+        //     return {
+        //         ...state,
+        //         filteredRemoteOnsiteData: [...filteredRemoteOnsite],
+        //         filteredjobData: [...state.filteredjobData, ...state.filteredMinBasePayData],
+        //     }
 
         case FILTER_LOCATION_DATA:
             data = state.jobData
@@ -123,7 +124,7 @@ export default function AppReducer(state = initialState, action) {
                 ...state,
                 filteredLocationData: [...filteredLocation]
             }
-            
+
         case FILTER_COMPANY_NAME_DATA:
             data = state.jobData
             let filteredCompanyName = handleCompanyNameFilter(data, action.filterData)
@@ -131,15 +132,45 @@ export default function AppReducer(state = initialState, action) {
                 ...state,
                 filteredCompanyNameData: [...filteredCompanyName]
             }
-        
+
         case FILTERS_APPLIED:
             console.log(action.data, "ACTION DATA")
-            let filtersObj = {...state.filtersApplied}
+            let filtersObj = { ...state.filtersApplied }
             filtersObj[action.data.name] = action.data.value
             return {
                 ...state,
                 filtersApplied: filtersObj
             }
+
+        case REMOVE_APPLIED_FILTERS:
+            let obj = { ...state.filtersApplied }
+            delete obj[action.value]
+            return {
+                ...state,
+                filtersApplied: obj
+            }
+
+        case APPLY_FILTER:
+            let data = state.jobData;
+            let filteredMinBasePay = [];
+            let filteredMinExp = [];
+            let filteredRemoteOnsite = [];
+            console.log(action, "APLY FILTER ACTION")
+            if (action.data[minBasePayFilter]) {
+                filteredMinBasePay = handleMinBasePayFilter(data, action.data[minBasePayFilter])
+            } else if (action.data[minExperienceFilter]) {
+                filteredMinExp = handleMinExpFilter(data, action.data[minExperienceFilter])
+            } else if (action.data[remoteOnSiteFilter]) {
+                filteredRemoteOnsite = handleRemoteOnsiteFilter(data, action.data[remoteOnSiteFilter])
+            }
+
+            console.log(filteredMinBasePay, "filteredMinBasePay")
+            return {
+                ...state,
+                reduxFilteredJobData: [...filteredMinBasePay, ...filteredMinExp, ...filteredRemoteOnsite]
+            }
+
+
         default:
             return state
     }

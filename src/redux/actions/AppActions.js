@@ -12,6 +12,8 @@ export const FILTER_REMOTE_ONSITE_DATA = "FILTER_REMOTE_ONSITE_DATA"
 export const FILTER_LOCATION_DATA = "FILTER_LOCATION_DATA"
 export const FILTER_COMPANY_NAME_DATA = "FILTER_COMPANY_NAME_DATA"
 export const FILTERS_APPLIED = "FILTERS_APPLIED"
+export const REMOVE_APPLIED_FILTERS = "REMOVE_APPLIED_FILTERS"
+export const APPLY_FILTER = "APPLY_FILTER"
 
 
 // export function fetchJobData(bodyData = {}){
@@ -66,13 +68,6 @@ export function handleJobDescriptionModal(val, job) {
     }
 }
 
-export function filtersAppliedState(val) {
-    return {
-        type: FILTERS_APPLIED_STATE,
-        payload: val
-    }
-}
-
 export function handleRoleFilterSelection(filterObj) {
     return {
         type: FILTER_ROLE_JOB_DATA,
@@ -88,71 +83,86 @@ export function handleRemoveRoleFilter(filterObj) {
 }
 
 export function filtersApplied(data){
+    console.log(data)
     return {
         type: FILTERS_APPLIED,
         data
     }
 }
 
-export function handleMinBasePayFilterSelection(filterObj) {
-    return (dispatch) => {
-        if (filterObj.filterValue !== null) {
-            dispatch(filtersApplied({name:filterObj.id, value: filterObj.filterValue}))
-        }
-        dispatch({
-            type: FILTER_MIN_BASE_PAY_JOB_DATA,
-            filterData: filterObj
-        })
+// export function handleMinBasePayFilterSelection(filterObj) {
+//     return (dispatch) => {
+//         if (filterObj.filterValue !== null) {
+//             dispatch(filtersApplied({name:filterObj.id, value: filterObj.filterValue}))
+//         }
+//         dispatch({
+//             type: FILTER_MIN_BASE_PAY_JOB_DATA,
+//             filterData: filterObj
+//         })
+//     }
+// }
+
+// export function handleMinExpFilterSelection(filterObj) {
+//     return (dispatch) => {
+//         if (filterObj.filterValue !== null) {
+//             dispatch(filtersApplied({name:filterObj.id, value: filterObj.filterValue}))
+//         }
+//         dispatch({
+//             type: FILTER_MIN_EXP_JOB_DATA,
+//             filterData: filterObj
+//         })
+//     }
+// }
+
+// export function handleRemoteOnsiteFilterSelection(filterObj) {
+//     return (dispatch) => {
+//         if (filterObj.filterValue !== null) {
+//             dispatch(filtersApplied({name:filterObj.id, value: filterObj.filterValue}))
+//         }
+//         dispatch({
+//             type: FILTER_REMOTE_ONSITE_DATA,
+//             filterData: filterObj
+//         })
+//     }
+// }
+
+// export function handleLocationFilterSelection(filterObj) {
+//     return (dispatch) => {
+//             dispatch(filtersApplied({name:filterObj.id, value: filterObj.filterValue}))
+//         dispatch({
+//             type: FILTER_LOCATION_DATA,
+//             filterData: filterObj
+//         })
+//     }
+// }
+
+// export function handleCompanyNameSelection(filterObj) {
+//     return (dispatch) => {
+//             dispatch(filtersApplied({name:filterObj.id, value: filterObj.filterValue}))
+//         dispatch({
+//             type: FILTER_COMPANY_NAME_DATA,
+//             filterData: filterObj
+//         })
+//     }
+// }
+
+export function removeAppliedFilters(value){
+
+    return {
+        type: REMOVE_APPLIED_FILTERS,
+        value
     }
+
 }
 
-export function handleMinExpFilterSelection(filterObj) {
-    return (dispatch) => {
-        if (filterObj.filterValue !== null) {
-            dispatch(filtersApplied({name:filterObj.id, value: filterObj.filterValue}))
-        }
-        dispatch({
-            type: FILTER_MIN_EXP_JOB_DATA,
-            filterData: filterObj
-        })
-    }
-}
+export function applyFilters(appliedFilters){
 
-export function handleRemoteOnsiteFilterSelection(filterObj) {
-    return (dispatch) => {
-        if (filterObj.filterValue !== null) {
-            dispatch(filtersApplied({name:filterObj.id, value: filterObj.filterValue}))
-        }
-        dispatch({
-            type: FILTER_REMOTE_ONSITE_DATA,
-            filterData: filterObj
-        })
+    return {
+        type: APPLY_FILTER,
+        data: appliedFilters
     }
-}
 
-export function handleLocationFilterSelection(filterObj) {
-    return (dispatch) => {
-        if (filterObj.filterValue) {
-            dispatch(filtersApplied({name:filterObj.id, value: filterObj.filterValue}))
-        }
-        dispatch({
-            type: FILTER_LOCATION_DATA,
-            filterData: filterObj
-        })
-    }
-}
-
-export function handleCompanyNameSelection(filterObj) {
-    return (dispatch) => {
-        if (filterObj.filterValue) {
-            dispatch(filtersApplied({name:filterObj.id, value: filterObj.filterValue}))
-        }
-        dispatch({
-            type: FILTER_COMPANY_NAME_DATA,
-            filterData: filterObj
-        })
-    }
-}
+} 
 
 // export const getMoreDataOnFilters = () => {
 //     if(filtersApplied)
