@@ -11,7 +11,7 @@ export const FILTER_MIN_EXP_JOB_DATA = "FILTER_MIN_EXP_JOB_DATA"
 export const FILTER_REMOTE_ONSITE_DATA = "FILTER_REMOTE_ONSITE_DATA"
 export const FILTER_LOCATION_DATA = "FILTER_LOCATION_DATA"
 export const FILTER_COMPANY_NAME_DATA = "FILTER_COMPANY_NAME_DATA"
-export const FILTERS_APPLIED_STATE = "FILTERS_APPLIED_STATE"
+export const FILTERS_APPLIED = "FILTERS_APPLIED"
 
 
 // export function fetchJobData(bodyData = {}){
@@ -87,10 +87,17 @@ export function handleRemoveRoleFilter(filterObj) {
     }
 }
 
+export function filtersApplied(data){
+    return {
+        type: FILTERS_APPLIED,
+        data
+    }
+}
+
 export function handleMinBasePayFilterSelection(filterObj) {
     return (dispatch) => {
         if (filterObj.filterValue !== null) {
-            dispatch(filtersAppliedState(true))
+            dispatch(filtersApplied({key:filterObj.uid, value: filterObj.filterValue}))
         }
         dispatch({
             type: FILTER_MIN_BASE_PAY_JOB_DATA,

@@ -1,5 +1,6 @@
+import { companyNameFilter, locationFilter, minBasePayFilter, minExperienceFilter, remoteOnSiteFilter } from "../../../constants/filterConstants";
 import { handleCompanyNameFilter, handleLocationFilter, handleMinBasePayFilter, handleRemoteOnsiteFilter, handleRoleFilter, handleRoleRemoveFilter } from "../../util/util";
-import { FETCH_JOB_DATA, FETCH_JOB_DATA_END, FILTERS_APPLIED_STATE, FILTER_COMPANY_NAME_DATA, FILTER_LOCATION_DATA, FILTER_MIN_BASE_PAY_JOB_DATA, FILTER_MIN_EXP_JOB_DATA, FILTER_REMOTE_ONSITE_DATA, FILTER_ROLE_JOB_DATA, REMOVE_ROLE_FILTER, SHOW_JOB_DESCRIPTION, handleRemoteOnsiteFilterSelection } from "../actions/AppActions"
+import { FETCH_JOB_DATA, FETCH_JOB_DATA_END, FILTERS_APPLIED, FILTERS_APPLIED_STATE, FILTER_COMPANY_NAME_DATA, FILTER_LOCATION_DATA, FILTER_MIN_BASE_PAY_JOB_DATA, FILTER_MIN_EXP_JOB_DATA, FILTER_REMOTE_ONSITE_DATA, FILTER_ROLE_JOB_DATA, REMOVE_ROLE_FILTER, SHOW_JOB_DESCRIPTION, handleRemoteOnsiteFilterSelection } from "../actions/AppActions"
 
 const initialState = {
     jobDescriptionModalState: false,
@@ -14,30 +15,30 @@ const initialState = {
         {
             name: "Minimum Base Pay",
             type: "single-dropdown",
-            uid: "min-basepay-filter",
+            uid: minBasePayFilter,
             options: ["10", "20", "30", "40", "50", "60"],
         },
         {
             name: "Minimum Experience",
-            uid: "min-exp-filter",
+            uid: minExperienceFilter,
             type: "single-dropdown",
             options: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
         },
         {
             name: "Remote / On site",
             type: "single-dropdown",
-            uid: "remote-onsite-filter",
+            uid: remoteOnSiteFilter,
             options: ["remote", "on site"],
         },
         {
             name: "Location",
             type: "text",
-            uid: "location-filter"
+            uid: locationFilter
         },
         {
             name: "Company Name",
             type: "text",
-            uid: "companyname-filter"
+            uid: companyNameFilter
         },
     ],
     filteredjobData: [],
@@ -47,7 +48,7 @@ const initialState = {
     filteredMinBasePayData: [],
     filteredLocationData: [],
     filteredCompanyNameData: [],
-    filtersApplied: false,
+    filtersApplied: {},
     endOfData: false
 }
 
@@ -135,6 +136,14 @@ export default function AppReducer(state = initialState, action) {
             return {
                 ...state,
                 filteredCompanyNameData: [...filteredCompanyName]
+            }
+        
+        case FILTERS_APPLIED:
+            let filtersObj = state.filtersApplied
+            filtersObj.Obj[action.data.key] = action.data.value
+            return {
+                ...state,
+                filtersApplied: filtersObj
             }
         default:
             return state

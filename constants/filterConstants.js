@@ -1,0 +1,6 @@
+export const minBasePayFilter = "min-base-pay-filter"
+export const minExperienceFilter = "min-exp-filter"
+export const remoteOnSiteFilter = "remote-onsite-filter"
+export const locationFilter = "locationFilter"
+export const companyNameFilter = "companyname-filter"
+export const rolesFilter = "roles-filter"
