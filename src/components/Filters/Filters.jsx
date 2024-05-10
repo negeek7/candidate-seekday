@@ -13,25 +13,13 @@ function Filters() {
     const dispatch = useDispatch()
 
     const filterData = useSelector(state => state.app.filterData)
-    console.log(filterData, "filterData")
 
     const handleMultiDropdownFilter = (filterName, filterValues) => {
-        // dispatch(handleRoleFilterSelection({filterName, filterValues}))
         dispatch(handleRoleFilterSelection({ filterName, filterValues }))
     }
 
     const handleSingleDropdownFilter = (id, filterName, filterValue) => {
-        // if (id == minBasePayFilter) {
-        //     dispatch(handleMinBasePayFilterSelection({ id, filterName, filterValue }))
-
-        // } else if (id == minExperienceFilter) {
-        //     dispatch(handleMinExpFilterSelection({ id, filterName, filterValue }))
-        // } else if (id == remoteOnSiteFilter) {
-        //     dispatch(handleRemoteOnsiteFilterSelection({ id, filterName, filterValue }))
-        // }
-        console.log(id, filterName, filterValue, "HGHJKs")
-            dispatch(filtersApplied({name:id, value:filterValue}))
-        console.log("aDAD")
+        dispatch(filtersApplied({ name: id, value: filterValue }))
     }
 
     const handleTextFilter = (id, filterName, filterValue) => {
@@ -40,7 +28,7 @@ function Filters() {
         // } else if (id === companyNameFilter) {
         //     dispatch(handleCompanyNameSelection({ id, filterName, filterValue }))
         // }
-        console.log("Hello")
+        dispatch(filtersApplied({name: id, value: filterValue}))
     }
 
     const renderFilter = (filter) => {

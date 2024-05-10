@@ -134,7 +134,6 @@ export default function AppReducer(state = initialState, action) {
             }
 
         case FILTERS_APPLIED:
-            console.log(action.data, "ACTION DATA")
             let filtersObj = { ...state.filtersApplied }
             filtersObj[action.data.name] = action.data.value
             return {
@@ -151,23 +150,22 @@ export default function AppReducer(state = initialState, action) {
             }
 
         case APPLY_FILTER:
-            let data = state.jobData;
+            let data = state.reduxFilteredJobData.length ? state.reduxFilteredJobData : state.jobData;
             let filteredMinBasePay = [];
             let filteredMinExp = [];
             let filteredRemoteOnsite = [];
-            console.log(action, "APLY FILTER ACTION")
             if (action.data[minBasePayFilter]) {
                 filteredMinBasePay = handleMinBasePayFilter(data, action.data[minBasePayFilter])
-            } else if (action.data[minExperienceFilter]) {
+            } 
+            if (action.data[minExperienceFilter]) {
                 filteredMinExp = handleMinExpFilter(data, action.data[minExperienceFilter])
-            } else if (action.data[remoteOnSiteFilter]) {
+            }  
+            if (action.data[remoteOnSiteFilter]) {
                 filteredRemoteOnsite = handleRemoteOnsiteFilter(data, action.data[remoteOnSiteFilter])
             }
-
-            console.log(filteredMinBasePay, "filteredMinBasePay")
             return {
                 ...state,
-                reduxFilteredJobData: [...filteredMinBasePay, ...filteredMinExp, ...filteredRemoteOnsite]
+                reduxFilteredJobData: Array.from(new Set([...filteredMinBasePay, ...filteredMinExp, ...filteredRemoteOnsite]))
             }
 
 

@@ -20,8 +20,8 @@ export function handleMinBasePayFilter(data, value) {
     return minBasePayData
 }
 
-export function handleMinExpFilter(data, filterObj) {
-    let filterValue = filterObj.filterValue
+export function handleMinExpFilter(data, value) {
+    let filterValue = parseInt(value)
     let minExpJobData = data.filter(item => {
         if (item.minExp !== null && filterValue > item.minExp) {
             return item
@@ -30,8 +30,8 @@ export function handleMinExpFilter(data, filterObj) {
     return minExpJobData
 }
 
-export function handleRemoteOnsiteFilter(data, filterObj) {
-    let filterValue = filterObj.filterValue
+export function handleRemoteOnsiteFilter(data, value) {
+    let filterValue = value
     let remoteOnsiteData = data.filter(item => {
         if (filterValue == "remote" && item.location == "remote") {
             return item

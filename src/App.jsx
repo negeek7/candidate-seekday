@@ -20,14 +20,8 @@ function App() {
 
   const jobData = useSelector(state => state.app.jobData)
   const endOfData = useSelector(state => state.app.endOfData)
-  // const filteredJobData = useSelector(state => state.app.filteredjobData)
   const jobDescriptionModalState = useSelector(state => state.app.jobDescriptionModalState)
   const filtersApplied = useSelector(state => state.app.filtersApplied)
-  const filteredMinBasePayData = useSelector(state => state.app.filteredMinBasePayData)
-  const filteredMinExpData = useSelector(state => state.app.filteredMinExpData)
-  const filteredRemoteOnsiteData = useSelector(state => state.app.filteredRemoteOnsiteData)
-  const filteredLocationData = useSelector(state => state.app.filteredLocationData)
-  const filteredCompanyNameData = useSelector(state => state.app.filteredCompanyNameData)
   const reduxFilteredJobData = useSelector(state => state.app.reduxFilteredJobData)
 
 
@@ -71,13 +65,8 @@ function App() {
     dispatch(handleJobDescriptionModal(val, job))
   }
 
-  console.log(filtersApplied, "filtersApplied")
-  console.log(filteredLocationData, "filteredLocationData ")
-  console.log(filteredJobData, "FILTERED JOB DATA")
-
   useEffect(() => {
     if(Object.keys(filtersApplied).length){
-      console.log("run apply filters")
       dispatch(applyFilters(filtersApplied))
     } else {
       return;
@@ -91,7 +80,7 @@ function App() {
   }, [reduxFilteredJobData])
 
   console.log(reduxFilteredJobData, "reduxFilteredJobData")
-
+  console.log(jobData)
 
   const renderJobData = () => {
     if (Object.keys(filtersApplied).length > 0 && filteredJobData?.length === 0) {
