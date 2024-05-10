@@ -109,7 +109,7 @@ export function handleMinBasePayFilterSelection(filterObj) {
 export function handleMinExpFilterSelection(filterObj) {
     return (dispatch) => {
         if (filterObj.filterValue !== null) {
-            dispatch(filtersAppliedState(true))
+            dispatch(filtersApplied({key:filterObj.uid, value: filterObj.filterValue}))
         }
         dispatch({
             type: FILTER_MIN_EXP_JOB_DATA,
@@ -121,7 +121,7 @@ export function handleMinExpFilterSelection(filterObj) {
 export function handleRemoteOnsiteFilterSelection(filterObj) {
     return (dispatch) => {
         if (filterObj.filterValue !== null) {
-            dispatch(filtersAppliedState(true))
+            dispatch(filtersApplied({key:filterObj.uid, value: filterObj.filterValue}))
         }
         dispatch({
             type: FILTER_REMOTE_ONSITE_DATA,
@@ -133,7 +133,7 @@ export function handleRemoteOnsiteFilterSelection(filterObj) {
 export function handleLocationFilterSelection(filterObj) {
     return (dispatch) => {
         if (filterObj.filterValue) {
-            dispatch(filtersAppliedState(true))
+            dispatch(filtersApplied({key:filterObj.uid, value: filterObj.filterValue}))
         }
         dispatch({
             type: FILTER_LOCATION_DATA,
@@ -145,7 +145,7 @@ export function handleLocationFilterSelection(filterObj) {
 export function handleCompanyNameSelection(filterObj) {
     return (dispatch) => {
         if (filterObj.filterValue) {
-            dispatch(filtersAppliedState(true))
+            dispatch(filtersApplied({key:filterObj.uid, value: filterObj.filterValue}))
         }
         dispatch({
             type: FILTER_COMPANY_NAME_DATA,

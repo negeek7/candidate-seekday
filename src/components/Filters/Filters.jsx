@@ -29,9 +29,9 @@ function Filters() {
 
     const handleTextFilter = (id, filterName, filterValue) => {
         if (id === "location-filter") {
-            dispatch(handleLocationFilterSelection({ filterName, filterValue }))
+            dispatch(handleLocationFilterSelection({ id, filterName, filterValue }))
         } else if (id === "companyname-filter") {
-            dispatch(handleCompanyNameSelection({ filterName, filterValue }))
+            dispatch(handleCompanyNameSelection({ id, filterName, filterValue }))
         }
     }
 
