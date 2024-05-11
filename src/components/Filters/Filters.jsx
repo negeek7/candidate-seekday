@@ -15,7 +15,8 @@ function Filters({ filtersApplied }) {
     const filterData = useSelector(state => state.app.filterData)
 
     const handleMultiDropdownFilter = (filterName, filterValues) => {
-        dispatch(handleRoleFilterSelection({ filterName, filterValues }))
+        // dispatch(handleRoleFilterSelection({ filterName, filterValues }))
+        console.log("multi drop down filter")
     }
 
     const handleSingleDropdownFilter = (id, filterName, filterValue) => {
@@ -37,13 +38,13 @@ function Filters({ filtersApplied }) {
 
     const renderFilter = (filter) => {
         switch (filter.type) {
-            // case 'multi-dropdown-roles':
-            //     return (
-            //         <MultiDropdownFilter 
-            //             filter={filter} 
-            //             handleMultiDropdownFilter={handleMultiDropdownFilter}
-            //         />
-            //     )
+            case 'multi-dropdown-roles':
+                return (
+                    <MultiDropdownFilter 
+                        filter={filter} 
+                        handleMultiDropdownFilter={handleMultiDropdownFilter}
+                    />
+                )
 
             case 'single-dropdown':
                 return (

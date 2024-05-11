@@ -1,4 +1,4 @@
-import { companyNameFilter, locationFilter, minBasePayFilter, minExperienceFilter, remoteOnSiteFilter } from "../../../constants/filterConstants";
+import { companyNameFilter, locationFilter, minBasePayFilter, minExperienceFilter, remoteOnSiteFilter, rolesFilter } from "../../../constants/filterConstants";
 import { handleCompanyNameFilter, handleLocationFilter, handleMinBasePayFilter, handleMinExpFilter, handleRemoteOnsiteFilter, handleRoleFilter, handleRoleRemoveFilter } from "../../util/util";
 import { APPLY_FILTER, FETCH_JOB_DATA, FETCH_JOB_DATA_END, FILTERS_APPLIED, FILTER_COMPANY_NAME_DATA, FILTER_LOCATION_DATA, FILTER_MIN_BASE_PAY_JOB_DATA, FILTER_MIN_EXP_JOB_DATA, FILTER_REMOTE_ONSITE_DATA, FILTER_ROLE_JOB_DATA, REMOVE_APPLIED_FILTERS, REMOVE_ROLE_FILTER, SHOW_JOB_DESCRIPTION } from "../actions/AppActions"
 
@@ -10,7 +10,8 @@ const initialState = {
         {
             name: "Roles",
             type: "multi-dropdown-roles",
-            options: ["frontend", "backend", "fullstack", "Ios", "react-native", "android", "tech lead"]
+            options: ["frontend", "backend", "fullstack", "Ios", "react-native", "android", "tech lead"],
+            uid: "roles-filter"
         },
         {
             name: "Minimum Base Pay",
@@ -167,6 +168,10 @@ export default function AppReducer(state = initialState, action) {
             for (const filterKey in action.data) {
                 console.log(filterKey, "filterKey")
                 switch (filterKey) {
+
+                    case rolesFilter:
+                        filteredData = handleRoleFilter(filteredData, ) 
+
                     case minBasePayFilter:
                         filteredData = handleMinBasePayFilter(filteredData, action.data[filterKey]);
                         break;
@@ -187,8 +192,6 @@ export default function AppReducer(state = initialState, action) {
                         break;
                 }
             }
-
-            console.log(state.removedFilter, filteredData, "FILTERED DATA AFTER")
 
             return {
                 ...state,
