@@ -1,11 +1,13 @@
 export function handleRoleFilter(data, filterObj) {
-    let values = filterObj.filterValues
+    let values = [...filterObj]
     if (!values.length) return []
+    console.log(values, "VLAUES")
     let filteredData = data.filter(item => values.includes(item.jobRole))
+    console.log(filteredData, "filteredData")
     return filteredData
 }
 
-export function handleRoleRemoveFilter(data, filterValue) {
+export function handleRoleRemoveFilter(filterValue) {
     let filteredData = data.filter(item => item.role !== filterValue)
     return filteredData
 }

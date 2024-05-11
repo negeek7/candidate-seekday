@@ -83,6 +83,7 @@ export function handleRemoveRoleFilter(filterObj) {
 }
 
 export function filtersAppliedAction(data){
+    console.log(data, "DAATATATA")
     return {
         type: FILTERS_APPLIED,
         data

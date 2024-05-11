@@ -1,6 +1,6 @@
 import { companyNameFilter, locationFilter, minBasePayFilter, minExperienceFilter, remoteOnSiteFilter, rolesFilter } from "../../../constants/filterConstants";
 import { handleCompanyNameFilter, handleLocationFilter, handleMinBasePayFilter, handleMinExpFilter, handleRemoteOnsiteFilter, handleRoleFilter, handleRoleRemoveFilter } from "../../util/util";
-import { APPLY_FILTER, FETCH_JOB_DATA, FETCH_JOB_DATA_END, FILTERS_APPLIED, FILTER_COMPANY_NAME_DATA, FILTER_LOCATION_DATA, FILTER_MIN_BASE_PAY_JOB_DATA, FILTER_MIN_EXP_JOB_DATA, FILTER_REMOTE_ONSITE_DATA, FILTER_ROLE_JOB_DATA, REMOVE_APPLIED_FILTERS, REMOVE_ROLE_FILTER, SHOW_JOB_DESCRIPTION } from "../actions/AppActions"
+import { APPLY_FILTER, FETCH_JOB_DATA, FETCH_JOB_DATA_END, FILTERS_APPLIED, FILTER_COMPANY_NAME_DATA, FILTER_LOCATION_DATA, FILTER_MIN_BASE_PAY_JOB_DATA, FILTER_MIN_EXP_JOB_DATA, FILTER_REMOTE_ONSITE_DATA, FILTER_ROLE_JOB_DATA, REMOVE_APPLIED_FILTERS, REMOVE_ROLE_FILTER, SHOW_JOB_DESCRIPTION, handleRemoveRoleFilter } from "../actions/AppActions"
 
 const initialState = {
     jobDescriptionModalState: false,
@@ -136,6 +136,7 @@ export default function AppReducer(state = initialState, action) {
 
         case FILTERS_APPLIED:
             let filtersObj = { ...state.filtersApplied }
+            console.log(filtersObj, "filtersObjfiltersObj")
             filtersObj[action.data.name] = action.data.value
             return {
                 ...state,
@@ -170,8 +171,8 @@ export default function AppReducer(state = initialState, action) {
                 switch (filterKey) {
 
                     case rolesFilter:
-                        filteredData = handleRoleFilter(filteredData, ) 
-
+                        filteredData = handleRoleFilter(filteredData, action.data[filterKey])
+                        break;
                     case minBasePayFilter:
                         filteredData = handleMinBasePayFilter(filteredData, action.data[filterKey]);
                         break;
@@ -192,6 +193,8 @@ export default function AppReducer(state = initialState, action) {
                         break;
                 }
             }
+
+            console.log(filteredData, 'POPP')
 
             return {
                 ...state,
