@@ -78,7 +78,6 @@ export default function AppReducer(state = initialState, action) {
             // data = state.jobData
             // let arg1 = !state.filteredjobData.length ? state.filteredjobData : data
             // const filteredRoleData = handleRoleFilter(arg1, action.filterData)
-            // console.log(filteredRoleData, "filteredRoleData")
             return {
                 filteredjobData: []
             }
@@ -150,22 +149,39 @@ export default function AppReducer(state = initialState, action) {
             }
 
         case APPLY_FILTER:
-            let data = state.reduxFilteredJobData.length ? state.reduxFilteredJobData : state.jobData;
-            let filteredMinBasePay = [];
-            let filteredMinExp = [];
-            let filteredRemoteOnsite = [];
+            console.log("apply filter this ran")
+            let data = state.reduxFilteredJobData.length ? state.reduxFilteredJobData : state.jobData
+            let filteredData = []
             if (action.data[minBasePayFilter]) {
+                let filteredMinBasePay = [];
                 filteredMinBasePay = handleMinBasePayFilter(data, action.data[minBasePayFilter])
+                filteredData = [...filteredMinBasePay]
             } 
             if (action.data[minExperienceFilter]) {
+                let filteredMinExp = [];
                 filteredMinExp = handleMinExpFilter(data, action.data[minExperienceFilter])
+                filteredData = [...filteredMinExp]
             }  
             if (action.data[remoteOnSiteFilter]) {
+                let filteredRemoteOnsite = [];
                 filteredRemoteOnsite = handleRemoteOnsiteFilter(data, action.data[remoteOnSiteFilter])
+                filteredData = [...filteredRemoteOnsite]
             }
+            if (action.data[locationFilter]) {
+                let filteredlocationFilter = [];
+                filteredlocationFilter = handleLocationFilter(data, action.data[locationFilter])
+                filteredData = [...filteredlocationFilter]
+                
+            }
+            if (action.data[companyNameFilter]) {
+                let filteredcompanyNameFilter = [];
+                filteredcompanyNameFilter = handleCompanyNameFilter(data, action.data[companyNameFilter])
+                filteredData = [...filteredcompanyNameFilter]
+            }
+
             return {
                 ...state,
-                reduxFilteredJobData: Array.from(new Set([...filteredMinBasePay, ...filteredMinExp, ...filteredRemoteOnsite]))
+                reduxFilteredJobData: Array.from(new Set([...filteredData]))
             }
 
 

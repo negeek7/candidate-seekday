@@ -5,10 +5,10 @@ import MultiDropdownFilter from './MultiDropdownFilter';
 import SingleDropdownFilter from './SingleDropdownFilter';
 import InputFilter from './InputFilter';
 // import { filtersApplied, handleCompanyNameSelection, handleLocationFilterSelection, handleMinBasePayFilterSelection, handleMinExpFilterSelection, handleRemoteOnsiteFilterSelection, handleRoleFilterSelection } from '../../redux/actions/AppActions';
-import { filtersApplied, removeAppliedFilters } from '../../redux/actions/AppActions';
+import { filtersAppliedAction, removeAppliedFilters } from '../../redux/actions/AppActions';
 import { companyNameFilter, locationFilter, minBasePayFilter, minExperienceFilter, remoteOnSiteFilter } from '../../../constants/filterConstants';
 
-function Filters() {
+function Filters({ filtersApplied }) {
 
     const dispatch = useDispatch()
 
@@ -19,20 +19,18 @@ function Filters() {
     }
 
     const handleSingleDropdownFilter = (id, filterName, filterValue) => {
-        dispatch(filtersApplied({ name: id, value: filterValue }))
+        dispatch(filtersAppliedAction({ name: id, value: filterValue }))
     }
 
     const handleTextFilter = (id, filterName, filterValue) => {
-        // if (id === locationFilter) {
-        //     dispatch(handleLocationFilterSelection({ id, filterName, filterValue }))
-        // } else if (id === companyNameFilter) {
-        //     dispatch(handleCompanyNameSelection({ id, filterName, filterValue }))
-        // }
-        dispatch(filtersApplied({name: id, value: filterValue}))
+        if(filterValue == '' && filtersApplied[id]){
+            console.log(id, "this ran")
+            dispatch(removeAppliedFilters(id))
+        }
+        dispatch(filtersAppliedAction({name: id, value: filterValue}))
     }
 
-    const handleRemoveFilter = (id, filterName, filterValue) => {
-        console.log(id, filterName, filterValue)
+    const handleRemoveFilter = (id) => {
         dispatch(removeAppliedFilters(id))
     }
 

@@ -23,7 +23,7 @@ export function handleMinBasePayFilter(data, value) {
 export function handleMinExpFilter(data, value) {
     let filterValue = parseInt(value)
     let minExpJobData = data.filter(item => {
-        if (item.minExp !== null && filterValue > item.minExp) {
+        if (item.minExp !== null && filterValue >= item.minExp) {
             return item
         }
     })
@@ -42,9 +42,8 @@ export function handleRemoteOnsiteFilter(data, value) {
     return remoteOnsiteData
 }
 
-export function handleLocationFilter(data, filterObj) {
-    let filterValue = filterObj.filterValue
-    if (filterValue == '') return data
+export function handleLocationFilter(data, value) {
+    let filterValue = value
     let locationData = data.filter(item => {
         return item.location.includes(filterValue)
     })
@@ -52,9 +51,8 @@ export function handleLocationFilter(data, filterObj) {
     return locationData
 }
 
-export function handleCompanyNameFilter(data, filterObj) {
-    let filterValue = filterObj.filterValue
-    if (filterValue == '') return data
+export function handleCompanyNameFilter(data, value) {
+    let filterValue = value
     let companyNameData = data.filter(item => {
         return item.companyName.toLowerCase().includes(filterValue.toLowerCase())
     })

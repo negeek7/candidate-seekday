@@ -42,6 +42,17 @@ function App() {
     }
   }, [endOfData])
 
+  useEffect(() => {
+    console.log("filtersApplied useEffect ran", filtersApplied)
+    dispatch(applyFilters(filtersApplied))
+  }, [filtersApplied])
+
+  useEffect(() => {
+    setFilteredJobData(reduxFilteredJobData)
+  }, [reduxFilteredJobData])
+
+  console.log(reduxFilteredJobData, "REDUX JOB DATA")
+
 
   const handleScroll = () => {
     if (endOfData) return;
@@ -65,13 +76,7 @@ function App() {
     dispatch(handleJobDescriptionModal(val, job))
   }
 
-  useEffect(() => {
-    dispatch(applyFilters(filtersApplied))
-  }, [filtersApplied])
 
-  useEffect(() => {
-    setFilteredJobData(reduxFilteredJobData)
-  }, [reduxFilteredJobData])
 
   const renderJobData = () => {
     if (Object.keys(filtersApplied).length && !filteredJobData.length) {
@@ -111,7 +116,7 @@ function App() {
   return (
     <div>
       <h1>Candidate Application Portal</h1>
-      <Filters />
+      <Filters filtersApplied={filtersApplied} />
       <div className={styles.jobCardContainer}>
         {renderJobData()}
       </div>

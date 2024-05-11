@@ -82,7 +82,7 @@ export function handleRemoveRoleFilter(filterObj) {
     }
 }
 
-export function filtersApplied(data){
+export function filtersAppliedAction(data){
     return {
         type: FILTERS_APPLIED,
         data
@@ -91,9 +91,12 @@ export function filtersApplied(data){
 
 
 export function removeAppliedFilters(value){
-    return {
-        type: REMOVE_APPLIED_FILTERS,
-        value
+    return (dispatch) => {
+        dispatch({
+            type: REMOVE_APPLIED_FILTERS,
+            value
+        })
+        dispatch(applyFilters(applyFilters))
     }
 }
 
