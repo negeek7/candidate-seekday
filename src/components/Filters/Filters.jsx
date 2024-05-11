@@ -24,14 +24,15 @@ function Filters({ filtersApplied }) {
 
     const handleTextFilter = (id, filterName, filterValue) => {
         if(filterValue == '' && filtersApplied[id]){
-            console.log(id, "this ran")
-            dispatch(removeAppliedFilters(id))
+            console.log(id, "empty value for text input")
+            dispatch(removeAppliedFilters(id, true))
+        } else {
+            dispatch(filtersAppliedAction({name: id, value: filterValue}))
         }
-        dispatch(filtersAppliedAction({name: id, value: filterValue}))
     }
 
     const handleRemoveFilter = (id) => {
-        dispatch(removeAppliedFilters(id))
+        dispatch(removeAppliedFilters(id, true))
     }
 
     const renderFilter = (filter) => {

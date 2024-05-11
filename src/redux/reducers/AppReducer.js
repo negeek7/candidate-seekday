@@ -50,7 +50,8 @@ const initialState = {
     filteredCompanyNameData: [],
     filtersApplied: {},
     endOfData: false,
-    reduxFilteredJobData: []
+    reduxFilteredJobData: [],
+    removedFilter: false
 }
 
 export default function AppReducer(state = initialState, action) {
@@ -145,44 +146,55 @@ export default function AppReducer(state = initialState, action) {
             delete obj[action.value]
             return {
                 ...state,
-                filtersApplied: obj
+                filtersApplied: obj,
+                removedFilter: action.bool
             }
 
         case APPLY_FILTER:
-            console.log("apply filter this ran")
-            let data = state.reduxFilteredJobData.length ? state.reduxFilteredJobData : state.jobData
-            let filteredData = []
-            if (action.data[minBasePayFilter]) {
-                let filteredMinBasePay = [];
-                filteredMinBasePay = handleMinBasePayFilter(data, action.data[minBasePayFilter])
-                filteredData = [...filteredMinBasePay]
-            } 
-            if (action.data[minExperienceFilter]) {
-                let filteredMinExp = [];
-                filteredMinExp = handleMinExpFilter(data, action.data[minExperienceFilter])
-                filteredData = [...filteredMinExp]
-            }  
-            if (action.data[remoteOnSiteFilter]) {
-                let filteredRemoteOnsite = [];
-                filteredRemoteOnsite = handleRemoteOnsiteFilter(data, action.data[remoteOnSiteFilter])
-                filteredData = [...filteredRemoteOnsite]
+            if (!Object.keys(action.data).length) {
+                return {
+                    ...state,
+                    reduxFilteredJobData: []
+                };
             }
-            if (action.data[locationFilter]) {
-                let filteredlocationFilter = [];
-                filteredlocationFilter = handleLocationFilter(data, action.data[locationFilter])
-                filteredData = [...filteredlocationFilter]
-                
+
+            let filteredData = state.removedFilter ? state.jobData : state.reduxFilteredJobData.length ? state.reduxFilteredJobData : state.jobData;
+
+            console.log(action.data, "action.data")
+            console.log(filteredData, "FILTERED DATA BEFORE")
+
+
+            for (const filterKey in action.data) {
+                console.log(filterKey, "filterKey")
+                switch (filterKey) {
+                    case minBasePayFilter:
+                        filteredData = handleMinBasePayFilter(filteredData, action.data[filterKey]);
+                        break;
+                    case minExperienceFilter:
+                        filteredData = handleMinExpFilter(filteredData, action.data[filterKey]);
+                        break;
+                    case remoteOnSiteFilter:
+                        filteredData = handleRemoteOnsiteFilter(filteredData, action.data[filterKey]);
+                        break;
+                    case locationFilter:
+                        filteredData = handleLocationFilter(filteredData, action.data[filterKey]);
+                        break;
+                    case companyNameFilter:
+                        filteredData = handleCompanyNameFilter(filteredData, action.data[filterKey]);
+                        break;
+
+                    default:
+                        break;
+                }
             }
-            if (action.data[companyNameFilter]) {
-                let filteredcompanyNameFilter = [];
-                filteredcompanyNameFilter = handleCompanyNameFilter(data, action.data[companyNameFilter])
-                filteredData = [...filteredcompanyNameFilter]
-            }
+
+            console.log(state.removedFilter, filteredData, "FILTERED DATA AFTER")
 
             return {
                 ...state,
-                reduxFilteredJobData: Array.from(new Set([...filteredData]))
-            }
+                reduxFilteredJobData: Array.from(new Set(filteredData))
+            };
+
 
 
         default:

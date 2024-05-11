@@ -43,7 +43,6 @@ function App() {
   }, [endOfData])
 
   useEffect(() => {
-    console.log("filtersApplied useEffect ran", filtersApplied)
     dispatch(applyFilters(filtersApplied))
   }, [filtersApplied])
 
@@ -52,6 +51,7 @@ function App() {
   }, [reduxFilteredJobData])
 
   console.log(reduxFilteredJobData, "REDUX JOB DATA")
+  console.log(filtersApplied, "FILTERS APPLIED")
 
 
   const handleScroll = () => {

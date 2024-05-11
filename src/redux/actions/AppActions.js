@@ -90,13 +90,11 @@ export function filtersAppliedAction(data){
 }
 
 
-export function removeAppliedFilters(value){
-    return (dispatch) => {
-        dispatch({
-            type: REMOVE_APPLIED_FILTERS,
-            value
-        })
-        dispatch(applyFilters(applyFilters))
+export function removeAppliedFilters(value, bool){
+    return {
+        type: REMOVE_APPLIED_FILTERS,
+        value,
+        bool
     }
 }
 
