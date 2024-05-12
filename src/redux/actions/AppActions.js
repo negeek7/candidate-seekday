@@ -19,7 +19,7 @@ export const APPLY_FILTER = "APPLY_FILTER"
 // export function fetchJobData(bodyData = {}){
 //     return (dispatch) => {
 
-//         // The API stopped working :((( ~~~~~
+// The API stopped working :((( ~~~~~
 
 //         jobApiCaller('https://api.weekday.technology/adhoc/getSampleJdJSON', bodyData)
 //         .then(data => {
@@ -83,7 +83,6 @@ export function handleRemoveRoleFilter(filterObj) {
 }
 
 export function filtersAppliedAction(data){
-    console.log(data, "DAATATATA")
     return {
         type: FILTERS_APPLIED,
         data
@@ -104,8 +103,4 @@ export function applyFilters(appliedFilters){
         type: APPLY_FILTER,
         data: appliedFilters
     }
-} 
-
-// export const getMoreDataOnFilters = () => {
-//     if(filtersApplied)
-// }    
+}

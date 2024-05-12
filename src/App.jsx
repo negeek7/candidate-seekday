@@ -44,14 +44,12 @@ function App() {
 
   useEffect(() => {
     dispatch(applyFilters(filtersApplied))
-  }, [filtersApplied])
+  }, [filtersApplied, jobData])
 
   useEffect(() => {
     setFilteredJobData(reduxFilteredJobData)
   }, [reduxFilteredJobData])
 
-  console.log(reduxFilteredJobData, "REDUX JOB DATA")
-  console.log(filtersApplied, "FILTERS APPLIED")
 
 
   const handleScroll = () => {
@@ -75,7 +73,6 @@ function App() {
   const handleViewJob = (val, job) => {
     dispatch(handleJobDescriptionModal(val, job))
   }
-
 
 
   const renderJobData = () => {

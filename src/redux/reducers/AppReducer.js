@@ -1,6 +1,6 @@
 import { companyNameFilter, locationFilter, minBasePayFilter, minExperienceFilter, remoteOnSiteFilter, rolesFilter } from "../../../constants/filterConstants";
-import { handleCompanyNameFilter, handleLocationFilter, handleMinBasePayFilter, handleMinExpFilter, handleRemoteOnsiteFilter, handleRoleFilter, handleRoleRemoveFilter } from "../../util/util";
-import { APPLY_FILTER, FETCH_JOB_DATA, FETCH_JOB_DATA_END, FILTERS_APPLIED, FILTER_COMPANY_NAME_DATA, FILTER_LOCATION_DATA, FILTER_MIN_BASE_PAY_JOB_DATA, FILTER_MIN_EXP_JOB_DATA, FILTER_REMOTE_ONSITE_DATA, FILTER_ROLE_JOB_DATA, REMOVE_APPLIED_FILTERS, REMOVE_ROLE_FILTER, SHOW_JOB_DESCRIPTION, handleRemoveRoleFilter } from "../actions/AppActions"
+import { handleCompanyNameFilter, handleLocationFilter, handleMinBasePayFilter, handleMinExpFilter, handleRemoteOnsiteFilter, handleRoleFilter } from "../../util/util";
+import { APPLY_FILTER, FETCH_JOB_DATA, FETCH_JOB_DATA_END, FILTERS_APPLIED, REMOVE_APPLIED_FILTERS, SHOW_JOB_DESCRIPTION } from "../actions/AppActions"
 
 const initialState = {
     jobDescriptionModalState: false,
@@ -76,63 +76,6 @@ export default function AppReducer(state = initialState, action) {
                 jobDescriptionModalState: action.payload.value,
                 jobDescriptionToShow: action.payload.jobToShow
             }
-        case FILTER_ROLE_JOB_DATA:
-            // data = state.jobData
-            // let arg1 = !state.filteredjobData.length ? state.filteredjobData : data
-            // const filteredRoleData = handleRoleFilter(arg1, action.filterData)
-            return {
-                filteredjobData: []
-            }
-
-        case REMOVE_ROLE_FILTER:
-            const foilterRoleRemovalData = handleRoleRemoveFilter(state.filteredjobData, action.filterData.filterValue)
-            return {
-                filteredjobData: foilterRoleRemovalData
-            }
-
-
-        // case FILTER_MIN_BASE_PAY_JOB_DATA:
-        //     data = state.jobData
-        //     let filteredMinBasePay = handleMinBasePayFilter(data, action.filterData)
-        //     return {
-        //         ...state,
-        //         filteredMinBasePayData: [...filteredMinBasePay],
-        //         filteredjobData: [...state.filteredjobData, ...state.filteredMinBasePayData],
-        //     }
-
-        // case FILTER_MIN_EXP_JOB_DATA:
-        //     data = state.jobData
-        //     let filteredMinExp = handleMinExpFilter(data, action.filterData)
-        //     return {
-        //         ...state,
-        //         filteredMinExpData: [...filteredMinExp],
-        //         filteredjobData: [...state.filteredjobData, ...state.filteredMinBasePayData],
-        //     }
-
-        // case FILTER_REMOTE_ONSITE_DATA:
-        //     data = state.jobData
-        //     let filteredRemoteOnsite = handleRemoteOnsiteFilter(data, action.filterData)
-        //     return {
-        //         ...state,
-        //         filteredRemoteOnsiteData: [...filteredRemoteOnsite],
-        //         filteredjobData: [...state.filteredjobData, ...state.filteredMinBasePayData],
-        //     }
-
-        case FILTER_LOCATION_DATA:
-            data = state.jobData
-            let filteredLocation = handleLocationFilter(data, action.filterData)
-            return {
-                ...state,
-                filteredLocationData: [...filteredLocation]
-            }
-
-        case FILTER_COMPANY_NAME_DATA:
-            data = state.jobData
-            let filteredCompanyName = handleCompanyNameFilter(data, action.filterData)
-            return {
-                ...state,
-                filteredCompanyNameData: [...filteredCompanyName]
-            }
 
         case FILTERS_APPLIED:
             let filtersObj = { ...state.filtersApplied }
@@ -162,12 +105,7 @@ export default function AppReducer(state = initialState, action) {
 
             let filteredData = state.removedFilter ? state.jobData : state.reduxFilteredJobData.length ? state.reduxFilteredJobData : state.jobData;
 
-            console.log(action.data, "action.data")
-            console.log(filteredData, "FILTERED DATA BEFORE")
-
-
             for (const filterKey in action.data) {
-                console.log(filterKey, "filterKey")
                 switch (filterKey) {
 
                     case rolesFilter:
@@ -193,8 +131,6 @@ export default function AppReducer(state = initialState, action) {
                         break;
                 }
             }
-
-            console.log(filteredData, 'POPP')
 
             return {
                 ...state,
