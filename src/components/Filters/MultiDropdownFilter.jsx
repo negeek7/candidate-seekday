@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import styles from '../../styles/multidropdownfilter.module.css';
+import styles from '../../../styles/multidropdownfilter.module.css';
 import { CaretDown, X } from '@phosphor-icons/react';
 
 function MultiDropdownFilter({ filter, handleMultiDropdownFilter, handleRemoveFilter }) {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import styles from '../../styles/filters.module.css'
+import styles from '../../../styles/filters.module.css'
 import MultiDropdownFilter from './MultiDropdownFilter';
 import SingleDropdownFilter from './SingleDropdownFilter';
 import InputFilter from './InputFilter';

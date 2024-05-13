@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../styles/jobcard.module.css'
+import styles from '../../styles/jobcard.module.css'
 import { Handshake, Sparkle } from '@phosphor-icons/react';
 
 function JobCard({ handleViewJob, job }) {

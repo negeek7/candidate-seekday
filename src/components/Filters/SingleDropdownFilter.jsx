@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styles from '../../styles/singledropdownfilter.module.css'
+import styles from '../../../styles/singledropdownfilter.module.css'
 import { CaretDown, X } from '@phosphor-icons/react';
 
 function SingleDropdownFilter({ filter, handleSingleDropdownFilter, handleRemoveFilter  }) {
