@@ -1,7 +1,6 @@
 .dropdown {
     display: inline-block;
     padding: 0 12px;
-    width: fit-content;
     border-radius: 4px;
 }
 
@@ -31,12 +30,21 @@
     cursor: pointer;
 }
 .appliedvalue{
-    border: 1px solid  red;
+    border-radius: 4px;
+    background-color: rgba(0, 128, 0, 0.496);
+    padding: 2px 10px;
     display: flex;
     align-items: center;
+    width: fit-content;
+    gap: 8px;
+}
+.appliedvaluecross{
+    margin-top: 2px;
+    padding: 2px;
 }
 .appliedvaluecross:hover{
-    background-color: rgba(164, 10, 10, 0.59);
+    background-color: rgba(164, 10, 10, 0.825);
+    border-radius: 50%;
 }
 @media (max-width: 768px) {
     .dropdown{

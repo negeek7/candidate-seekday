@@ -49,8 +49,8 @@ function SingleDropdownFilter({ filter, handleSingleDropdownFilter, handleRemove
     <div className={styles.dropdown}>
 
             <div className={styles.dropdownsubcontainer} onClick={toggleFilters}>
-                    <span className={styles.appliedFilters}>{appliedFilter == null ? filter.name : showAppliedFilter()}
-                    </span>
+                    <div className={styles.appliedFilters}>{appliedFilter == null ? filter.name : showAppliedFilter()}
+                    </div>
                 
                 <CaretDown size={10} className={styles.downArrow}/>
             </div>
