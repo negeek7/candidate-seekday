@@ -16,7 +16,6 @@ function Filters({ filtersApplied }) {
 
     const handleMultiDropdownFilter = (id, filterName, filterValues = []) => {
         if(!filterValues.length) return;
-        console.log(id, filterName, filterValues, "multi drop down filter")
         dispatch(filtersAppliedAction({ name: id, value: filterValues }))
     }
 
@@ -26,7 +25,6 @@ function Filters({ filtersApplied }) {
 
     const handleTextFilter = (id, filterName, filterValue) => {
         if(filterValue == '' && filtersApplied[id]){
-            console.log(id, "empty value for text input")
             dispatch(removeAppliedFilters(id, true))
         } else {
             dispatch(filtersAppliedAction({name: id, value: filterValue}))

@@ -79,7 +79,6 @@ export default function AppReducer(state = initialState, action) {
 
         case FILTERS_APPLIED:
             let filtersObj = { ...state.filtersApplied }
-            console.log(filtersObj, "filtersObjfiltersObj")
             filtersObj[action.data.name] = action.data.value
             return {
                 ...state,
