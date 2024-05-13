@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import styles from '../../styles/InputFilter.module.css'
+import styles from '../../styles/inputFilter.module.css'
 
 function InputFilter({ filter, handleTextFilter }) {
 

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import styles from '../../styles/JobDescriptionModal.module.css'
+import styles from '../../styles/jobDescriptionModal.module.css'
 import { X } from '@phosphor-icons/react';
 import { useSelector } from 'react-redux';
 
