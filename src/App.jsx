@@ -4,9 +4,8 @@ import styles from './styles/App.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import JobCard from './components/JobCard'
 import JobDescriptionModal from './components/Modals/JobDescriptionModal'
-import { applyFilters, fetchJobData, handleJobDescriptionModal, removeAppliedFilters, removeReduxFilteredData } from './redux/actions/AppActions';
+import { applyFilters, fetchJobData, handleJobDescriptionModal, removeReduxFilteredData } from './redux/actions/AppActions';
 import Filters from './components/Filters/Filters';
-import { companyNameFilter, locationFilter } from '../constants/filterConstants';
 
 function App() {
 
@@ -116,7 +115,7 @@ function App() {
 
   return (
     <div>
-      <h1>Candidate Application Portal</h1>
+      <h1 className={styles.heading}>SeekDay</h1>
       <Filters filtersApplied={filtersApplied} />
       <div className={styles.jobCardContainer}>
         {renderJobData()}

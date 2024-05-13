@@ -44,6 +44,7 @@ function Filters({ filtersApplied }) {
                     <MultiDropdownFilter 
                         filter={filter} 
                         handleMultiDropdownFilter={handleMultiDropdownFilter}handleRemoveFilter={handleRemoveFilter}
+                        label="Roles"
                     />
                 )
 

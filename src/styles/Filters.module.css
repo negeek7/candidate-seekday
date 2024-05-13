@@ -1,23 +1,18 @@
 .filterscontainer{
     display: flex;
     flex-direction: row;
-    overflow-x: scroll;
     gap: 22px;
     align-items: center;
-    padding: 8px;
-    -ms-overflow-style: none; 
-    scrollbar-width: none;
-    padding-left: 94px;
-}
-
-.filterssubcontainer::-webkit-scrollbar { 
-    display: none;
+    flex-wrap: wrap;
+    padding-left: 100px;
+    margin-bottom: 18px;
 }
 
 @media (max-width: 768px) {
 
     .filterscontainer{
-        padding: 6px;
+        padding: 14px;
+        margin-bottom: 4px;
     }
     
 }
