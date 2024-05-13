@@ -82,7 +82,7 @@ function App() {
     if (Object.keys(filtersApplied).length && !filteredJobData.length) {
       return (
         <div>
-          No results found.
+          Sorry, No results found for your search.
         </div>
       );
     } 

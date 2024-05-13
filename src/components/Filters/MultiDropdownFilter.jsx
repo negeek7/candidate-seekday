@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styles from '../../styles/MultiDropdownFilter.module.css';
-import { CaretDown, X } from '@phosphor-icons/react';
+import { CaretDown, UserFocus, X } from '@phosphor-icons/react';
 
 function MultiDropdownFilter({ filter, handleMultiDropdownFilter, handleRemoveFilter }) {
 
     const [showDropdown, setShowDropdown] = useState(false)
     const [appliedFilters, setAppliedFilters] = useState([])
+    const dropdownRef = useRef(null)
+    const dropdownParentRef = useRef(null)
 
     const hideDropdownStyle = {
         display: "none"
@@ -48,14 +50,14 @@ function MultiDropdownFilter({ filter, handleMultiDropdownFilter, handleRemoveFi
     return (
         <div className={styles.dropdown}>
 
-            <div className={styles.dropdownsubcontainer} onClick={toggleFilters}>
+            <div ref={dropdownParentRef} id="dropdownParent" className={styles.dropdownsubcontainer} onClick={toggleFilters}>
                 <div className={styles.appliedFilters}>{!appliedFilters.length ? "Roles" : showAppliedFilterValues()}
                 </div>
 
                 <CaretDown size={10} className={styles.downArrow} />
             </div>
 
-            <div id="myDropdown" className={styles.dropdownContent} style={showDropdown ? showDropDownStyle : hideDropdownStyle}>
+            <div ref={dropdownRef} id="myDropdown" className={styles.dropdownContent} style={showDropdown ? showDropDownStyle : hideDropdownStyle}>
                 {
                     filter.options.map((option, index) => (
                         <span
