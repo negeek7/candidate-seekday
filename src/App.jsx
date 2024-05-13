@@ -4,7 +4,7 @@ import styles from './styles/App.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import JobCard from './components/JobCard'
 import JobDescriptionModal from './components/Modals/JobDescriptionModal'
-import { applyFilters, fetchJobData, handleJobDescriptionModal, removeAppliedFilters } from './redux/actions/AppActions';
+import { applyFilters, fetchJobData, handleJobDescriptionModal, removeAppliedFilters, removeReduxFilteredData } from './redux/actions/AppActions';
 import Filters from './components/Filters/Filters';
 import { companyNameFilter, locationFilter } from '../constants/filterConstants';
 
@@ -31,6 +31,10 @@ function App() {
     //   offset: pageNum
     // }))
     dispatch(fetchJobData(jobData.length, pageNum))
+    if(pageNum > 10){
+      "removing redux data"
+      dispatch(removeReduxFilteredData())
+    }
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);

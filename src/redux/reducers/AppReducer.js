@@ -1,6 +1,6 @@
 import { companyNameFilter, locationFilter, minBasePayFilter, minExperienceFilter, remoteOnSiteFilter, rolesFilter } from "../../../constants/filterConstants";
 import { handleCompanyNameFilter, handleLocationFilter, handleMinBasePayFilter, handleMinExpFilter, handleRemoteOnsiteFilter, handleRoleFilter } from "../../util/util";
-import { APPLY_FILTER, FETCH_JOB_DATA, FETCH_JOB_DATA_END, FILTERS_APPLIED, REMOVE_APPLIED_FILTERS, SHOW_JOB_DESCRIPTION } from "../actions/AppActions"
+import { APPLY_FILTER, FETCH_JOB_DATA, FETCH_JOB_DATA_END, FILTERS_APPLIED, REMOVE_APPLIED_FILTERS, REMOVE_REDUX_FILTERED_DATA, SHOW_JOB_DESCRIPTION } from "../actions/AppActions"
 
 const initialState = {
     jobDescriptionModalState: false,
@@ -137,6 +137,11 @@ export default function AppReducer(state = initialState, action) {
                 reduxFilteredJobData: Array.from(new Set(filteredData))
             };
 
+            case REMOVE_REDUX_FILTERED_DATA:
+                return {
+                    ...state,
+                    reduxFilteredJobData: []
+                }
 
 
         default:

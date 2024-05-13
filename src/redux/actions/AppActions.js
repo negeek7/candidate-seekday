@@ -14,6 +14,7 @@ export const FILTER_COMPANY_NAME_DATA = "FILTER_COMPANY_NAME_DATA"
 export const FILTERS_APPLIED = "FILTERS_APPLIED"
 export const REMOVE_APPLIED_FILTERS = "REMOVE_APPLIED_FILTERS"
 export const APPLY_FILTER = "APPLY_FILTER"
+export const REMOVE_REDUX_FILTERED_DATA = "REMOVE_REDUX_FILTERED_DATA"
 
 
 // export function fetchJobData(bodyData = {}){
@@ -102,5 +103,12 @@ export function applyFilters(appliedFilters){
     return {
         type: APPLY_FILTER,
         data: appliedFilters
+    }
+}
+
+export function removeReduxFilteredData(){
+    return {
+        type: REMOVE_REDUX_FILTERED_DATA,
+        payload: true
     }
 }
